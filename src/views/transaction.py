@@ -1,3 +1,4 @@
+# src/views/transaction.py
 import sys
 import os
 sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
@@ -14,7 +15,7 @@ class TransactionUI(QWidget):
     def __init__(self):
         super().__init__()
         self.setup_ui()
-
+        
     def setup_ui(self):
         # Main layout
         main_layout = QVBoxLayout(self)
