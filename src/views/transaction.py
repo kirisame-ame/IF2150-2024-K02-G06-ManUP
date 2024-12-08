@@ -3,6 +3,7 @@ import os
 sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea
+from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 from controllers.transactionC import read_transaction, delete_transaction, update_transaction
 
@@ -48,17 +49,47 @@ class TransactionUI(QWidget):
 
     def create_transaction_card(self, transaction):
         card = QWidget()
-        card_layout = QVBoxLayout(card)
+        card_layout = QHBoxLayout(card)
+        card.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 2px;")
 
-        header_layout = QHBoxLayout()
-        category_label = QLabel(transaction['category'])
-        date_label = QLabel(transaction['date'])
-        header_layout.addWidget(category_label)
-        header_layout.addWidget(date_label, alignment=Qt.AlignmentFlag.AlignRight)
+        # Bagian Kiri: Logo
+        logo_label = QLabel()
+        logo_label.setFixedSize(65, 65)
+        logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        if transaction['type'] == 'expense':
+            logo_label.setStyleSheet("background-color: red;")
+        else:
+            logo_label.setStyleSheet("background-color: green;")
+        category = transaction['category']
+        logo_path = os.path.join(os.getcwd(), 'src', 'public', f'{category}.png')
+        if os.path.exists(logo_path):
+            pixmap = QPixmap(logo_path)
+            logo_label.setPixmap(pixmap.scaled(65, 65, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+        else:
+            logo_label.setText("No Logo")
+        
+        left_layout = QVBoxLayout()
+        logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        left_layout.addWidget(logo_label)
 
+        category_label = QLabel(f"{transaction['category']}")
+        category_label.setStyleSheet("font-size: 10px; font-weight: bold; margin-top: 2.5px;")
+        category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        category_label.setFixedWidth(65)  # Sesuaikan lebar teks dengan lebar logo
+        left_layout.addWidget(category_label)
+
+        card_layout.addLayout(left_layout)
+        # Bagian Tengah: Amount dan Tombol
+        center_layout = QVBoxLayout()
+        # Amount
         amount_label = QLabel(f"Rp {transaction['amount']}")
-        amount_label.setStyleSheet("font-weight: bold;")
+        if transaction['type'] == 'expense':
+            amount_label.setStyleSheet("color: red; font-weight: bold; font-size: 16px;")
+        else:
+            amount_label.setStyleSheet("color: green; font-weight: bold; font-size: 16px;")
+        center_layout.addWidget(amount_label)
 
+        # Tombol Delete dan Edit
         button_layout = QHBoxLayout()
         delete_button = QPushButton("Delete")
         delete_button.clicked.connect(lambda: self.delete_transaction(transaction['id']))
@@ -66,10 +97,15 @@ class TransactionUI(QWidget):
         edit_button.clicked.connect(lambda: self.edit_transaction(transaction['id']))
         button_layout.addWidget(delete_button)
         button_layout.addWidget(edit_button)
+        center_layout.addLayout(button_layout)
 
-        card_layout.addLayout(header_layout)
-        card_layout.addWidget(amount_label, alignment=Qt.AlignmentFlag.AlignCenter)
-        card_layout.addLayout(button_layout)
+        card_layout.addLayout(center_layout)
+
+        # Bagian Kanan: Date
+        date_label = QLabel(f"Date: {transaction['date']}")
+        date_label.setStyleSheet("font-size: 30px; color: white; background-color: gray; padding: 5px; border-radius: 5px;")
+        date_label.setAlignment(Qt.AlignmentFlag.AlignVCenter)
+        card_layout.addWidget(date_label)
 
         return card
 

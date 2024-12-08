@@ -6,7 +6,6 @@ sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from controllers.transactionC import create_transaction
 from controllers.transactionC import getNewId
-from controllers.transactionC import getNewId
 from PyQt6.QtWidgets import QComboBox
 from PyQt6.QtCore import pyqtSignal
 class TransactionFormUI(QWidget):

@@ -411,14 +411,6 @@
         "documentation": {}
     },
     {
-        "label": "getNewId",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
         "label": "delete_transaction",
         "importPath": "controllers.transactionC",
         "description": "controllers.transactionC",
@@ -480,6 +472,14 @@
         "description": "PyQt6.QtCore",
         "isExtraImport": true,
         "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QPixmap",
+        "importPath": "PyQt6.QtGui",
+        "description": "PyQt6.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtGui",
         "documentation": {}
     },
     {
