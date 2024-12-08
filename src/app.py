@@ -1,7 +1,11 @@
 import sys
+import os
+sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
+
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from views.home import HomeUI
 from views.components.navbar import Navbar
+from views.transaction import TransactionUI
 
 class HomeController(QMainWindow):
     def __init__(self):
@@ -18,13 +22,15 @@ class HomeController(QMainWindow):
         self.navbar.btn_transaction.clicked.connect(self.show_transactions)
         self.navbar.btn_home.clicked.connect(self.show_home)
         self.navbar.btn_budget.clicked.connect(self.show_budget)
-        
+
+        # Initialize the transaction UI
+        self.transaction_ui = TransactionUI()
 
     def show_home(self):
         self.view.content.setText("Welcome to the Home Page!")
 
     def show_transactions(self):
-        self.view.content.setText("This is the Transactions Page.")
+        self.setCentralWidget(self.transaction_ui)
 
     def show_budget(self):
         self.view.content.setText("This is the Budget Page.")

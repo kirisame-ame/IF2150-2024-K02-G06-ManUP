@@ -1,2 +1,2 @@
-id;targetAmount;startDate;targetDate;currentAmount
-1;100;2021-01-01;2021-12-31;0
+id,targetAmount,startDate,targetDate,currentAmount
+1,100,2021-01-01,2021-12-31,0
