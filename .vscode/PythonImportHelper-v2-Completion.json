@@ -1,0 +1,159 @@
+[
+    {
+        "label": "QWidget",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QHBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QHBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QApplication",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMainWindow",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "views.components.navbar",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "isExtraImport": true,
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "HomeUI",
+        "importPath": "views.home",
+        "description": "views.home",
+        "isExtraImport": true,
+        "detail": "views.home",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "kind": 6,
+        "importPath": "src.views.components.navbar",
+        "description": "src.views.components.navbar",
+        "peekOfCode": "class Navbar(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Navigation bar\n        nav_bar = QHBoxLayout(self)\n        self.btn_home = QPushButton(\"Home\")\n        self.btn_transaction = QPushButton(\"Transactions\")\n        self.btn_budget = QPushButton(\"Budget\")",
+        "detail": "src.views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "HomeUI",
+        "kind": 6,
+        "importPath": "src.views.home",
+        "description": "src.views.home",
+        "peekOfCode": "class HomeUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # Central content placeholder\n        self.content = QLabel(\"Welcome to the Home Page!\")\n        # Add nav bar and content to the main layout",
+        "detail": "src.views.home",
+        "documentation": {}
+    },
+    {
+        "label": "HomeController",
+        "kind": 6,
+        "importPath": "src.app",
+        "description": "src.app",
+        "peekOfCode": "class HomeController(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"ManUP Budgeting App\")\n        # Initialize the UI\n        self.view = HomeUI()\n        self.setCentralWidget(self.view)\n        # Connect buttons to methods\n        self.navbar = Navbar()\n        self.view.layout().setMenuBar(self.navbar)",
+        "detail": "src.app",
+        "documentation": {}
+    }
+]
