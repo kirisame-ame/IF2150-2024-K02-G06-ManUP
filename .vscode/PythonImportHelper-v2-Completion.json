@@ -1,5 +1,14 @@
 [
     {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
         "label": "QWidget",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
@@ -127,6 +136,96 @@
         "description": "views.home",
         "isExtraImport": true,
         "detail": "views.home",
+        "documentation": {}
+    },
+    {
+        "label": "read_transaction",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def read_transaction():\n    transaction = pd.read_csv('models/transaction.csv')\n    return transaction\ndef create_transaction(data):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction.append(data, ignore_index=True)\n    transaction.to_csv('models/transaction.csv', index=False)\n    return transaction\ndef delete_transaction(id):\n    transaction = pd.read_csv('models/transaction.csv')",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "create_transaction",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def create_transaction(data):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction.append(data, ignore_index=True)\n    transaction.to_csv('models/transaction.csv', index=False)\n    return transaction\ndef delete_transaction(id):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['id'] != id]\n    transaction.to_csv('models/transaction.csv', index=False)\n    return transaction",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "delete_transaction",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def delete_transaction(id):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['id'] != id]\n    transaction.to_csv('models/transaction.csv', index=False)\n    return transaction\ndef update_transaction(data):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['id'] != data['id']]\n    transaction = transaction.append(data, ignore_index=True)\n    transaction.to_csv('models/transaction.csv', index=False)",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "update_transaction",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def update_transaction(data):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['id'] != data['id']]\n    transaction = transaction.append(data, ignore_index=True)\n    transaction.to_csv('models/transaction.csv', index=False)\n    return transaction\ndef get_transaction(id):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['id'] == id]\n    return transaction",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "get_transaction",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def get_transaction(id):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['id'] == id]\n    return transaction\ndef total_transaction():\n    transaction = pd.read_csv('models/transaction.csv')\n    income = transaction[transaction['type'] == 'income']['amount'].sum()\n    expense = transaction[transaction['type'] == 'expense']['amount'].sum()\n    total = income - expense\n    return total",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "total_transaction",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def total_transaction():\n    transaction = pd.read_csv('models/transaction.csv')\n    income = transaction[transaction['type'] == 'income']['amount'].sum()\n    expense = transaction[transaction['type'] == 'expense']['amount'].sum()\n    total = income - expense\n    return total\ndef get_transaction_by_type(type):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['type'] == type]\n    return transaction",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "get_transaction_by_type",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def get_transaction_by_type(type):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['type'] == type]\n    return transaction\ndef get_transaction_by_description(description):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['description'] == description]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv('models/transaction.csv')",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "get_transaction_by_description",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def get_transaction_by_description(description):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['description'] == description]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date():\n    transaction = pd.read_csv('models/transaction.csv')",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "get_transaction_by_date",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def get_transaction_by_date(date):\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date():\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction.sort_values('date')\n    return transaction",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "sort_transaction_by_date",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def sort_transaction_by_date():\n    transaction = pd.read_csv('models/transaction.csv')\n    transaction = transaction.sort_values('date')\n    return transaction",
+        "detail": "src.controllers.transactionC",
         "documentation": {}
     },
     {
