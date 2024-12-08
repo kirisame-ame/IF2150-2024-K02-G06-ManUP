@@ -12,23 +12,20 @@ def create_transaction(data):
     transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))
     transaction = pd.concat([transaction, pd.DataFrame([data])], ignore_index=True)
     transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)
-    return transaction
 
 def delete_transaction(id):
     transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))        
     transaction = transaction[transaction['id'] != id]
     transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)
-    return transaction
 
 def update_transaction(data):
     transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))
-    id = data['id']
-    # Select only the relevant keys from the data dictionary
-    update_data = pd.DataFrame([data], columns=transaction.columns)
-    transaction.loc[transaction['id'] == id] = update_data
+    transaction.loc[transaction['id'] == data['id'], 'amount'] = data['amount']
+    transaction.loc[transaction['id'] == data['id'], 'date'] = data['date']
+    transaction.loc[transaction['id'] == data['id'], 'type'] = data['type']
+    transaction.loc[transaction['id'] == data['id'], 'description'] = data['description']
     transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)
-    return transaction
-
+    
 def get_transaction(id):
     transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))
     transaction = transaction[transaction['id'] == id]

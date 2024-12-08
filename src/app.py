@@ -13,7 +13,7 @@ class HomeController(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("ManUP Budgeting App")
-
+        
         # Create a central widget to hold other widgets
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
