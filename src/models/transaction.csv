@@ -14,3 +14,4 @@ id,amount,date,type,category
 13,200.0,4-4-4,income,other
 14,1.0,1-1-2,expense,food
 15,1000.0,1-2-3,income,gifts
+16,11.0,1000-11-11,income,job

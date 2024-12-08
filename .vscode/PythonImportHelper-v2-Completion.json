@@ -155,6 +155,14 @@
         "documentation": {}
     },
     {
+        "label": "QMessageBox",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QWidget",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
@@ -331,6 +339,14 @@
         "documentation": {}
     },
     {
+        "label": "QMessageBox",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QApplication",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
@@ -443,14 +459,6 @@
         "documentation": {}
     },
     {
-        "label": "update_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
         "label": "pyqtSignal",
         "importPath": "PyQt6.QtCore",
         "description": "PyQt6.QtCore",
@@ -472,6 +480,15 @@
         "description": "PyQt6.QtCore",
         "isExtraImport": true,
         "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
         "documentation": {}
     },
     {
@@ -628,7 +645,7 @@
         "kind": 6,
         "importPath": "src.views.create_transaction",
         "description": "src.views.create_transaction",
-        "peekOfCode": "class TransactionFormUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.setup_ui()\n    def setup_ui(self):\n        input_layout = QVBoxLayout(self)\n        self.date_label = QLabel(\"Date:\")\n        self.date_input = QLineEdit()",
+        "peekOfCode": "class TransactionFormUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.setup_ui()\n    def setup_ui(self):\n        input_layout = QVBoxLayout(self)\n        self.date_label = QLabel(\"Date (YYYY-MM-DD):\")\n        self.date_input = QLineEdit()",
         "detail": "src.views.create_transaction",
         "documentation": {}
     },

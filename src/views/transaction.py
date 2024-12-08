@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
-from controllers.transactionC import read_transaction, delete_transaction, update_transaction
+from controllers.transactionC import read_transaction, delete_transaction
 
 from views.components.navbar import Navbar
 class TransactionUI(QWidget):

@@ -8,6 +8,8 @@ from controllers.transactionC import create_transaction
 from controllers.transactionC import getNewId
 from PyQt6.QtWidgets import QComboBox
 from PyQt6.QtCore import pyqtSignal
+import re
+from PyQt6.QtWidgets import QMessageBox
 class TransactionFormUI(QWidget):
     closed = pyqtSignal()
     def __init__(self, transaction_ui):
@@ -18,7 +20,7 @@ class TransactionFormUI(QWidget):
     def setup_ui(self):
         input_layout = QVBoxLayout(self)
 
-        self.date_label = QLabel("Date:")
+        self.date_label = QLabel("Date (YYYY-MM-DD):")
         self.date_input = QLineEdit()
         input_layout.addWidget(self.date_label)
         input_layout.addWidget(self.date_input)
@@ -46,6 +48,36 @@ class TransactionFormUI(QWidget):
         input_layout.addWidget(self.submit_button)
         
         self.setLayout(input_layout)
+        
+    def form_create_transaction(self):
+        date_pattern = re.compile(r'^\d{4}-\d{2}-\d{2}$')
+        date = self.date_input.text()
+        if not date_pattern.match(date):
+            self.show_error_message("Date must be in format YYYY-MM-DD")
+            return
+        
+        try:
+            amount = float(self.amount_input.text())
+        except ValueError:
+            self.show_error_message("Amount must be a number")
+            return
+        
+        id = getNewId()
+        type = self.type_input.currentText()
+        category = self.category_input.currentText()
+        
+        data = {'id': id, 'amount': amount, 'date': date, 'type': type, 'category': category}
+        create_transaction(data)
+        self.hide()
+        self.transaction_ui.load_transactions()
+        self.transaction_ui.show()
+
+    def show_error_message(self, message):
+        error_dialog = QMessageBox(self)
+        error_dialog.setIcon(QMessageBox.Icon.Critical)
+        error_dialog.setText(message)
+        error_dialog.setWindowTitle("Input Error")
+        error_dialog.exec()
     
     def remove_select_type(self, text):
         if text != "Select Type":
@@ -56,17 +88,17 @@ class TransactionFormUI(QWidget):
             self.category_input.addItems(["food", "transport", "bills", "shopping", "other"])
         elif text == "income":
             self.category_input.addItems(["job", "side jobs", "investments", "gifts", "other"])
-    def form_create_transaction(self):
-        id = getNewId()
-        amount = float(self.amount_input.text())
-        date = self.date_input.text()
-        type = self.type_input.currentText()
-        category = self.category_input.currentText()
+    # def form_create_transaction(self):
+    #     id = getNewId()
+    #     amount = float(self.amount_input.text())
+    #     date = self.date_input.text()
+    #     type = self.type_input.currentText()
+    #     category = self.category_input.currentText()
         
-        data = {'id': id, 'amount': amount, 'date': date, 'type': type, 'category': category}
-        create_transaction(data)
-        self.hide()
-        self.transaction_ui.load_transactions()
-        self.transaction_ui.show()
+    #     data = {'id': id, 'amount': amount, 'date': date, 'type': type, 'category': category}
+    #     create_transaction(data)
+    #     self.hide()
+    #     self.transaction_ui.load_transactions()
+    #     self.transaction_ui.show()
 
     

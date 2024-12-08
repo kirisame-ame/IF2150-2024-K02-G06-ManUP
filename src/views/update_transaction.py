@@ -2,11 +2,12 @@
 import sys
 import os
 sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
-
+import re
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from controllers.transactionC import update_transaction
 from PyQt6.QtWidgets import QComboBox
 from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtWidgets import QMessageBox
 class TransactionFormEditUI(QWidget):
     closed = pyqtSignal()
     def __init__(self, transaction_ui, id):
@@ -56,6 +57,17 @@ class TransactionFormEditUI(QWidget):
         if text != "Select Type":
             self.type_input.removeItem(0)
     def form_update_transaction(self):
+        date_pattern = re.compile(r'^\d{4}-\d{2}-\d{2}$')
+        date = self.date_input.text()
+        if not date_pattern.match(date):
+            self.show_error_message("Date must be in format YYYY-MM-DD")
+            return
+        
+        try:
+            amount = float(self.amount_input.text())
+        except ValueError:
+            self.show_error_message("Amount must be a number")
+            return
         id = self.id
         amount = float(self.amount_input.text())
         date = self.date_input.text()
@@ -67,5 +79,11 @@ class TransactionFormEditUI(QWidget):
         self.hide()
         self.transaction_ui.load_transactions()
         self.transaction_ui.show()
+    def show_error_message(self, message):
+        error_dialog = QMessageBox(self)
+        error_dialog.setIcon(QMessageBox.Icon.Critical)
+        error_dialog.setText(message)
+        error_dialog.setWindowTitle("Input Error")
+        error_dialog.exec()
 
     
