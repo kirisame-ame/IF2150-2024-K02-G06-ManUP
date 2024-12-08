@@ -1,9 +1,7 @@
-id,amount,date,type,description
-1,100.0,2-2-2,expense,a
-2,20.0,2021-01-02,expense,Groceries
-3,20.0,2023-10-01,income,Sample
-4,200.0,2024-01-04,expense,Salary
-5,1.0,2024-01-01,expense,salary
+id,amount,date,type,category
+3,1212103.0,100-1-200,expense,food
+4,1010100.0,1-1-1,income,side jobs
+5,999999.0,1-1-1,income,other
 6,1.0,1-1-1,e,e
 7,200.0,1-1-2,e,e
 8,1.0,1-1-3,e,e
@@ -12,3 +10,5 @@ id,amount,date,type,description
 11,2.0,1,expense,e
 12,2.0,1-1-1,income,a
 13,200.0,4-4-4,expense,yes bisa
+14,1.0,1-1-2,expense,food
+15,7777.0,1-1-1,expense,transport

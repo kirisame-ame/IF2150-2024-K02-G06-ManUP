@@ -123,6 +123,94 @@
         "documentation": {}
     },
     {
+        "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QComboBox",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QHBoxLayout",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
@@ -163,6 +251,14 @@
         "documentation": {}
     },
     {
+        "label": "QHBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QLabel",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
@@ -172,6 +268,62 @@
     },
     {
         "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QScrollArea",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QComboBox",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
         "isExtraImport": true,
@@ -243,7 +395,7 @@
         "documentation": {}
     },
     {
-        "label": "read_transaction",
+        "label": "create_transaction",
         "importPath": "controllers.transactionC",
         "description": "controllers.transactionC",
         "isExtraImport": true,
@@ -251,7 +403,31 @@
         "documentation": {}
     },
     {
-        "label": "create_transaction",
+        "label": "getNewId",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "getNewId",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "delete_transaction",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "read_transaction",
         "importPath": "controllers.transactionC",
         "description": "controllers.transactionC",
         "isExtraImport": true,
@@ -275,7 +451,7 @@
         "documentation": {}
     },
     {
-        "label": "get_transaction",
+        "label": "update_transaction",
         "importPath": "controllers.transactionC",
         "description": "controllers.transactionC",
         "isExtraImport": true,
@@ -283,11 +459,27 @@
         "documentation": {}
     },
     {
-        "label": "getNewId",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
+        "label": "pyqtSignal",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
         "isExtraImport": true,
-        "detail": "controllers.transactionC",
+        "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "pyqtSignal",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtCore",
         "documentation": {}
     },
     {
@@ -319,7 +511,7 @@
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def read_transaction():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    return transaction\ndef create_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = pd.concat([transaction, pd.DataFrame([data])], ignore_index=True)\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\n    return transaction\ndef delete_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))        ",
+        "peekOfCode": "def read_transaction():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    return transaction\ndef create_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = pd.concat([transaction, pd.DataFrame([data])], ignore_index=True)\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\ndef delete_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))        \n    transaction = transaction[transaction['id'] != id]",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
@@ -328,7 +520,7 @@
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def create_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = pd.concat([transaction, pd.DataFrame([data])], ignore_index=True)\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\n    return transaction\ndef delete_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))        \n    transaction = transaction[transaction['id'] != id]\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\n    return transaction",
+        "peekOfCode": "def create_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = pd.concat([transaction, pd.DataFrame([data])], ignore_index=True)\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\ndef delete_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))        \n    transaction = transaction[transaction['id'] != id]\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\ndef update_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
@@ -337,7 +529,7 @@
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def delete_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))        \n    transaction = transaction[transaction['id'] != id]\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\n    return transaction\ndef update_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    id = data['id']\n    # Select only the relevant keys from the data dictionary\n    update_data = pd.DataFrame([data], columns=transaction.columns)",
+        "peekOfCode": "def delete_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))        \n    transaction = transaction[transaction['id'] != id]\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\ndef update_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction.loc[transaction['id'] == data['id'], 'amount'] = data['amount']\n    transaction.loc[transaction['id'] == data['id'], 'date'] = data['date']\n    transaction.loc[transaction['id'] == data['id'], 'type'] = data['type']\n    transaction.loc[transaction['id'] == data['id'], 'category'] = data['category']",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
@@ -346,7 +538,7 @@
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def update_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    id = data['id']\n    # Select only the relevant keys from the data dictionary\n    update_data = pd.DataFrame([data], columns=transaction.columns)\n    transaction.loc[transaction['id'] == id] = update_data\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\n    return transaction\ndef get_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
+        "peekOfCode": "def update_transaction(data):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction.loc[transaction['id'] == data['id'], 'amount'] = data['amount']\n    transaction.loc[transaction['id'] == data['id'], 'date'] = data['date']\n    transaction.loc[transaction['id'] == data['id'], 'type'] = data['type']\n    transaction.loc[transaction['id'] == data['id'], 'category'] = data['category']\n    transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)\ndef get_transaction(id):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['id'] == id]",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
@@ -373,16 +565,16 @@
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def get_transaction_by_type(type):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['type'] == type]\n    return transaction\ndef get_transaction_by_description(description):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['description'] == description]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
+        "peekOfCode": "def get_transaction_by_type(type):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['type'] == type]\n    return transaction\ndef get_transaction_by_category(category):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['category'] == category]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
     {
-        "label": "get_transaction_by_description",
+        "label": "get_transaction_by_category",
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def get_transaction_by_description(description):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['description'] == description]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
+        "peekOfCode": "def get_transaction_by_category(category):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['category'] == category]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
@@ -432,6 +624,24 @@
         "documentation": {}
     },
     {
+        "label": "TransactionFormUI",
+        "kind": 6,
+        "importPath": "src.views.create_transaction",
+        "description": "src.views.create_transaction",
+        "peekOfCode": "class TransactionFormUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.setup_ui()\n    def setup_ui(self):\n        input_layout = QVBoxLayout(self)\n        self.date_label = QLabel(\"Date:\")\n        self.date_input = QLineEdit()",
+        "detail": "src.views.create_transaction",
+        "documentation": {}
+    },
+    {
+        "label": "TransactionDeleteUI",
+        "kind": 6,
+        "importPath": "src.views.delete_transaction",
+        "description": "src.views.delete_transaction",
+        "peekOfCode": "class TransactionDeleteUI(QWidget):\n    def __init__(self, transaction_ui):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.setup_ui()\n    def setup_ui(self):\n        input_layout = QVBoxLayout(self)\n        self.id_label = QLabel(\"ID:\")\n        self.id_input = QLineEdit()\n        input_layout.addWidget(self.id_label)",
+        "detail": "src.views.delete_transaction",
+        "documentation": {}
+    },
+    {
         "label": "HomeUI",
         "kind": 6,
         "importPath": "src.views.home",
@@ -445,8 +655,17 @@
         "kind": 6,
         "importPath": "src.views.transaction",
         "description": "src.views.transaction",
-        "peekOfCode": "class TransactionUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # add navbar\n        self.navbar = Navbar()\n        main_layout.addWidget(self.navbar)",
+        "peekOfCode": "class TransactionUI(QWidget):\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.setup_ui()\n        self.load_transactions()\n    def setup_ui(self):\n        main_layout = QVBoxLayout(self)\n        # add navbar\n        self.navbar = Navbar()\n        main_layout.addWidget(self.navbar)",
         "detail": "src.views.transaction",
+        "documentation": {}
+    },
+    {
+        "label": "TransactionFormEditUI",
+        "kind": 6,
+        "importPath": "src.views.update_transaction",
+        "description": "src.views.update_transaction",
+        "peekOfCode": "class TransactionFormEditUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui, id):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.id = id\n        self.setup_ui()\n    def setup_ui(self):\n        input_layout = QVBoxLayout(self)\n        self.date_label = QLabel(\"Date:\")",
+        "detail": "src.views.update_transaction",
         "documentation": {}
     },
     {

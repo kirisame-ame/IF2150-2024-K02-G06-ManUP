@@ -6,19 +6,17 @@ sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from controllers.transactionC import update_transaction
 from PyQt6.QtWidgets import QComboBox
+from PyQt6.QtCore import pyqtSignal
 class TransactionFormEditUI(QWidget):
-    def __init__(self, transaction_ui):
+    closed = pyqtSignal()
+    def __init__(self, transaction_ui, id):
         super().__init__()
         self.transaction_ui = transaction_ui
+        self.id = id
         self.setup_ui()
 
     def setup_ui(self):
         input_layout = QVBoxLayout(self)
-
-        self.id_label = QLabel("ID:")
-        self.id_input = QLineEdit()
-        input_layout.addWidget(self.id_label)
-        input_layout.addWidget(self.id_input)
         
         self.date_label = QLabel("Date:")
         self.date_input = QLineEdit()
@@ -32,31 +30,42 @@ class TransactionFormEditUI(QWidget):
         
         self.type_label = QLabel("Type:")
         self.type_input = QComboBox()
-        self.type_input.addItems(["expense", "income"])
+        self.type_input.addItems(["Select Type", "expense", "income"])
+        self.type_input.currentTextChanged.connect(self.update_category)
+        self.type_input.currentTextChanged.connect(self.remove_select_type)
         input_layout.addWidget(self.type_label)
         input_layout.addWidget(self.type_input)
         
-        self.description_label = QLabel("Description:")
-        self.description_input = QLineEdit()
-        input_layout.addWidget(self.description_label)
-        input_layout.addWidget(self.description_input)
+        self.category_label = QLabel("Category:")
+        self.category_input = QComboBox()
+        input_layout.addWidget(self.category_label)
+        input_layout.addWidget(self.category_input)
 
         self.submit_button = QPushButton("Submit")
         self.submit_button.clicked.connect(self.form_update_transaction)
         input_layout.addWidget(self.submit_button)
         
         self.setLayout(input_layout)
-        
+    def update_category(self, text):
+        self.category_input.clear()
+        if text == "expense":
+            self.category_input.addItems(["food", "transport", "bills", "shopping", "other"])
+        elif text == "income":
+            self.category_input.addItems(["job", "side jobs", "investments", "gifts", "other"])
+    def remove_select_type(self, text):
+        if text != "Select Type":
+            self.type_input.removeItem(0)
     def form_update_transaction(self):
-        id = int(self.id_input.text())
+        id = self.id
         amount = float(self.amount_input.text())
         date = self.date_input.text()
         type = self.type_input.currentText()
-        description = self.description_input.text()
+        category = self.category_input.currentText()
         
-        data = {'id': id, 'amount': amount, 'date': date, 'type': type, 'description': description}
+        data = {'id': id, 'amount': amount, 'date': date, 'type': type, 'category': category}
         update_transaction(data)
         self.hide()
+        self.transaction_ui.load_transactions()
         self.transaction_ui.show()
 
     

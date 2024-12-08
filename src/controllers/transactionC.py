@@ -23,7 +23,7 @@ def update_transaction(data):
     transaction.loc[transaction['id'] == data['id'], 'amount'] = data['amount']
     transaction.loc[transaction['id'] == data['id'], 'date'] = data['date']
     transaction.loc[transaction['id'] == data['id'], 'type'] = data['type']
-    transaction.loc[transaction['id'] == data['id'], 'description'] = data['description']
+    transaction.loc[transaction['id'] == data['id'], 'category'] = data['category']
     transaction.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'), index=False)
     
 def get_transaction(id):
@@ -43,9 +43,9 @@ def get_transaction_by_type(type):
     transaction = transaction[transaction['type'] == type]
     return transaction
 
-def get_transaction_by_description(description):
+def get_transaction_by_category(category):
     transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))
-    transaction = transaction[transaction['description'] == description]
+    transaction = transaction[transaction['category'] == category]
     return transaction
 
 def get_transaction_by_date(date):
