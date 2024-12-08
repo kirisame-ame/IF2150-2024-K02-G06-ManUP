@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QLabel,
 )
-import views.components.navbar as navbar
+from views.components.navbar import Navbar
 
 class BudgetUI(QWidget):
     def __init__(self):
@@ -20,6 +20,10 @@ class BudgetUI(QWidget):
         # Central content placeholder
         self.content = QLabel("Welcome to the Budget Page!!!")
 
+        # add navbar
+        self.navbar = Navbar()
+        main_layout.addWidget(self.navbar)
+        
         # Add nav bar and content to the main layout
         main_layout.addWidget(self.content)
 

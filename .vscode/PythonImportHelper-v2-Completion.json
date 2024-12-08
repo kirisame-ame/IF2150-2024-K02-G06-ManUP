@@ -195,11 +195,42 @@
         "documentation": {}
     },
     {
-        "label": "views.components.navbar",
-        "kind": 6,
+        "label": "QWidget",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
         "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
         "importPath": "views.components.navbar",
         "description": "views.components.navbar",
+        "isExtraImport": true,
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "isExtraImport": true,
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "isExtraImport": true,
         "detail": "views.components.navbar",
         "documentation": {}
     },
@@ -387,7 +418,7 @@
         "kind": 6,
         "importPath": "src.views.components.navbar",
         "description": "src.views.components.navbar",
-        "peekOfCode": "class Navbar(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Navigation bar\n        nav_bar = QHBoxLayout(self)\n        self.btn_home = QPushButton(\"Home\")\n        self.btn_transaction = QPushButton(\"Transactions\")\n        self.btn_budget = QPushButton(\"Budget\")",
+        "peekOfCode": "class Navbar(QWidget):\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.setup_ui()\n    def setup_ui(self):\n        # Navigation bar\n        nav_bar = QHBoxLayout(self)\n        self.btn_home = QPushButton(\"Home\")\n        self.btn_transaction = QPushButton(\"Transactions\")\n        self.btn_budget = QPushButton(\"Budget\")",
         "detail": "src.views.components.navbar",
         "documentation": {}
     },
@@ -396,7 +427,7 @@
         "kind": 6,
         "importPath": "src.views.budget",
         "description": "src.views.budget",
-        "peekOfCode": "class BudgetUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # Central content placeholder\n        self.content = QLabel(\"Welcome to the Budget Page!!!\")\n        # Add nav bar and content to the main layout",
+        "peekOfCode": "class BudgetUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # Central content placeholder\n        self.content = QLabel(\"Welcome to the Budget Page!!!\")\n        # add navbar",
         "detail": "src.views.budget",
         "documentation": {}
     },
@@ -405,7 +436,7 @@
         "kind": 6,
         "importPath": "src.views.home",
         "description": "src.views.home",
-        "peekOfCode": "class HomeUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # Central content placeholder\n        self.content = QLabel(\"Welcome to the Home Page!\")\n        # Add nav bar and content to the main layout",
+        "peekOfCode": "class HomeUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # add navbar\n        self.navbar = Navbar()\n        main_layout.addWidget(self.navbar)",
         "detail": "src.views.home",
         "documentation": {}
     },
@@ -414,7 +445,7 @@
         "kind": 6,
         "importPath": "src.views.transaction",
         "description": "src.views.transaction",
-        "peekOfCode": "class TransactionUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # Central content placeholder\n        self.content = QLabel(\"This is the Transactions Page.\")\n        # Add nav bar and content to the main layout",
+        "peekOfCode": "class TransactionUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # add navbar\n        self.navbar = Navbar()\n        main_layout.addWidget(self.navbar)",
         "detail": "src.views.transaction",
         "documentation": {}
     },
@@ -423,7 +454,7 @@
         "kind": 6,
         "importPath": "src.app",
         "description": "src.app",
-        "peekOfCode": "class HomeController(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"ManUP Budgeting App\")\n        # Initialize the UI\n        self.view = HomeUI()\n        self.setCentralWidget(self.view)\n        # Connect buttons to methods\n        self.navbar = Navbar()\n        self.view.layout().setMenuBar(self.navbar)",
+        "peekOfCode": "class HomeController(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"ManUP Budgeting App\")\n        # Create a central widget to hold other widgets\n        self.central_widget = QWidget()\n        self.setCentralWidget(self.central_widget)\n        # Create layouts\n        self.main_layout = QVBoxLayout(self.central_widget)\n        # Initialize the UIs once",
         "detail": "src.app",
         "documentation": {}
     }

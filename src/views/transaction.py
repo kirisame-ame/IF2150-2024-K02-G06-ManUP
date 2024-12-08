@@ -11,6 +11,7 @@ from controllers.transactionC import update_transaction
 from controllers.transactionC import get_transaction
 from controllers.transactionC import getNewId
 
+from views.components.navbar import Navbar
 class TransactionUI(QWidget):
     def __init__(self):
         super().__init__()
@@ -20,6 +21,9 @@ class TransactionUI(QWidget):
         # Main layout
         main_layout = QVBoxLayout(self)
 
+        # add navbar
+        self.navbar = Navbar()
+        main_layout.addWidget(self.navbar)
         # Central content placeholder
         self.content = QLabel("This is the Transactions Page.")
 

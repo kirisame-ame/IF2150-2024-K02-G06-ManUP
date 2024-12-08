@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QLabel,
 )
-import views.components.navbar as navbar
+from views.components.navbar import Navbar
 
 class HomeUI(QWidget):
     def __init__(self):
@@ -16,6 +16,9 @@ class HomeUI(QWidget):
         # Main layout
         main_layout = QVBoxLayout(self)
 
+        # add navbar
+        self.navbar = Navbar()
+        main_layout.addWidget(self.navbar)
         # Central content placeholder
         self.content = QLabel("Welcome to the Home Page!")
 

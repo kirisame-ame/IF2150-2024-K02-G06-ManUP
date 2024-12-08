@@ -7,8 +7,8 @@ from PyQt6.QtWidgets import (
 )
 
 class Navbar(QWidget):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.setup_ui()
 
     def setup_ui(self):
