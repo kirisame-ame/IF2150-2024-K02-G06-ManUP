@@ -1,5 +1,5 @@
-id,budgetName,budgetAmount,allocated,remainder,startDate,endDate
-1,Groceries,20,true,0,2021-01-01,2021-12-31
-2,Rent,40,true,0,2021-01-01,2021-12-31
-3,Utilities,10,true,0,2021-01-01,2021-12-31
-4,Entertainment,30,true,0,2021-01-01,2021-12-31
+id,budgetName,budgetAmount,remainder,startDate,endDate
+1,Groceries,20,0,2021-01-01,2021-12-31
+2,Rent,40,0,2021-01-01,2021-12-31
+3,Utilities,10,0,2021-01-01,2021-12-31
+4,Entertainment,30,0,2021-01-01,2021-12-31
