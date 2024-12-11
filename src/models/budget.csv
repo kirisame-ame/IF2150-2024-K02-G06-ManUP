@@ -3,3 +3,4 @@ id,budgetName,budgetAmount,remainder,startDate,endDate
 2,Rent,40,0,2021-01-01,2021-12-31
 3,Utilities,10,0,2021-01-01,2021-12-31
 4,Entertainment,30,0,2021-01-01,2021-12-31
+5,Transportation,20,0,2021-01-01,2021-12-31
