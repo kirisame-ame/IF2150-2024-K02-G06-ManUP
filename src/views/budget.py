@@ -3,13 +3,10 @@ import os
 import pandas as pd
 import textwrap
 from PyQt6.QtWidgets import (
+    QApplication, QVBoxLayout, QHBoxLayout, QScrollArea, QWidget, QLabel,
+    QPushButton, QDialog, QLineEdit, QMessageBox, QFrame, QSpacerItem, QSizePolicy,
+    QSplitter,
     QWidget,
-    QVBoxLayout,
-    QHBoxLayout,
-    QLabel,
-    QFrame,
-    QSpacerItem,
-    QSizePolicy,
     QScrollArea,
     QTableWidget,
     QTableWidgetItem,
@@ -180,8 +177,14 @@ class BudgetUI(QWidget):
             # Create a card widget
             card = QWidget()
             card_layout = QVBoxLayout(card)
-            card_layout.setContentsMargins(20, 20, 20, 20)  # Increased padding
-            card_layout.setSpacing(15)
+            card_layout.setContentsMargins(30, 30, 30, 30)  # Increased padding
+            card_layout.setSpacing(10)
+            card.setStyleSheet(
+                """
+                border-radius: 10px;
+                border: 2px solid #d3d3d3;
+                """
+            )
 
             # Add the budget name as a title at the top of the card
             budget_name = row.get('budgetName', '')
@@ -209,9 +212,12 @@ class BudgetUI(QWidget):
             budget_amount_label.setStyleSheet(
                 """
                 QLabel {
-                    font-size: 14px;
+                    font-size: 20px;
+                    font-weight: bold;
                     color: #333;
                     padding: 5px 30px;
+                    border-radius: 10px;
+                    border: 1px solid #d3d3d3;
                 }
                 """
             )
@@ -221,11 +227,12 @@ class BudgetUI(QWidget):
             remainder_label.setStyleSheet(
                 """
                 QLabel {
-                    font-size: 14px;
+                    font-size: 20px;
                     color: white;
                     background-color: #f44336;
                     padding: 5px 30px;
-                    border-radius: 4px;
+                    border-radius: 10px;
+                    border: 1px solid #d3d3d3;
                 }
                 """
             )
@@ -241,12 +248,14 @@ class BudgetUI(QWidget):
             timeline_label.setStyleSheet(
                 """
                 QLabel {
-                    font-size: 14px;
+                    font-size: 20px;
                     color: #555;
                     padding: 5px 30px;
                     margin-top: 10px;
                     margin-bottom: 10px;
                     font-weight: bold;
+                    border: 1px solid #d3d3d3;
+                    border-radius: 10px;
                 }
                 """
             )
@@ -264,15 +273,17 @@ class BudgetUI(QWidget):
                     background-color: #2196f3;
                     color: white;
                     border: none;
-                    padding: 10px 15px;
+                    padding: 10px 20px;
                     border-radius: 4px;
+                    font-size: 20px;
+                    font-weight: bold;
                 }
                 QPushButton:hover {
                     background-color: #1976d2;
                 }
                 """
             )
-            edit_button.clicked.connect(lambda _, r=i: self.edit_row(r))
+            edit_button.clicked.connect(lambda _, r=row: self.show_edit_popup(r))
             button_layout.addWidget(edit_button)
 
             # Add Delete button
@@ -283,50 +294,82 @@ class BudgetUI(QWidget):
                     background-color: #f44336;
                     color: white;
                     border: none;
-                    padding: 10px 15px;
+                    padding: 10px 20px;
                     border-radius: 4px;
+                    font-size: 20px;
+                    font-weight: bold;
                 }
                 QPushButton:hover {
                     background-color: #d32f2f;
                 }
                 """
             )
-            delete_button.clicked.connect(lambda _, r=i: self.delete_row(r))
+            delete_button.clicked.connect(lambda _, r=row: self.confirm_delete(r))
             button_layout.addWidget(delete_button)
 
-            # Add buttons to the card layout
             card_layout.addLayout(button_layout)
-
-            # Style the card with a modernized look
-            card.setStyleSheet(
-                """
-                QWidget {
-                    border: 1px solid #e0e0e0;
-                    border-radius: 8px;
-                    background-color: #ffffff;
-                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-                }
-                """
-            )
-
-            # Add the card to the container layout
             container_layout.addWidget(card)
 
-        # Add some spacing between cards
-        container_layout.addStretch()
-
-        # Set the container to the scroll area
         scroll_area.setWidget(container)
         return scroll_area
 
+    def show_edit_popup(self, row):
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Edit Budget")
+        dialog_layout = QVBoxLayout(dialog)
 
+        # Add input fields
+        name_input = QLineEdit(row.get('budgetName', ''))
+        name_input.setPlaceholderText("Budget Name")
+        dialog_layout.addWidget(name_input)
 
+        amount_input = QLineEdit(str(row.get('budgetAmount', '')))
+        amount_input.setPlaceholderText("Budget Amount")
+        dialog_layout.addWidget(amount_input)
 
+        remainder_input = QLineEdit(str(row.get('remainder', '')))
+        remainder_input.setPlaceholderText("Remainder")
+        dialog_layout.addWidget(remainder_input)
 
-    def edit_row(self, row):
-        print(f"Edit row: {row}")
-        # Logic for editing the row
+        # Add Save button
+        save_button = QPushButton("Save")
+        save_button.clicked.connect(lambda: self.save_edit(row, name_input, amount_input, remainder_input, dialog))
+        dialog_layout.addWidget(save_button)
 
-    def delete_row(self, row):
-        print(f"Delete row: {row}")
-        # Logic for deleting the row
+        dialog.exec()
+
+    def save_edit(self, row, name_input, amount_input, remainder_input, dialog):
+        # Update the data
+        updated_data = {
+            'id': row['id'],
+            'budgetName': name_input.text(),
+            'budgetAmount': float(amount_input.text()),
+            'remainder': float(remainder_input.text()),
+            'startDate': row['startDate'],
+            'endDate': row['endDate']
+        }
+        updateBudget(updated_data)
+
+        # Refresh UI
+        self.refresh_ui()
+        dialog.close()
+
+    def confirm_delete(self, row):
+        reply = QMessageBox.question(
+            self, "Confirm Delete", f"Are you sure you want to delete {row['budgetName']}?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if reply == QMessageBox.StandardButton.Yes:
+            deleteBudget(row['id'])
+            self.refresh_ui()
+
+    def refresh_ui(self):
+        # Reload the pie chart and cards
+        csv_path = os.path.join(os.getcwd(), 'src', 'models', 'budget.csv')
+        self.pie_chart.setParent(None)
+        self.pie_chart = self.create_pie_chart(csv_path)
+        self.layout().itemAt(1).widget().layout().itemAt(1).widget().layout().addWidget(self.pie_chart, alignment=Qt.AlignmentFlag.AlignCenter)
+
+        scroll_area = self.create_scrollable_cards(csv_path)
+        self.layout().itemAt(1).widget().layout().itemAt(2).widget().deleteLater()
+        self.layout().itemAt(1).widget().layout().addWidget(scroll_area)
