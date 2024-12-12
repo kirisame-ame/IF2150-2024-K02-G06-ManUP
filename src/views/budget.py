@@ -58,7 +58,7 @@ class BudgetUI(QWidget):
         # Budget section
         budget_section = QFrame()
         budget_layout = QVBoxLayout(budget_section)
-        budget_label = QLabel("Budget Overview")
+        budget_label = QLabel("")
         budget_label.setStyleSheet("font-size: 18px; font-weight: bold; text-align: center;")
         budget_layout.addWidget(budget_label, alignment=Qt.AlignmentFlag.AlignCenter)
         splitter.addWidget(budget_section)
@@ -70,7 +70,7 @@ class BudgetUI(QWidget):
         budget_layout.addWidget(pie_chart, alignment=Qt.AlignmentFlag.AlignCenter)
 
         # Add scrollable table
-        scroll_area = self.create_scrollable_table(csv_path)
+        scroll_area = self.create_scrollable_cards(csv_path)
         budget_layout.addWidget(scroll_area)
 
         # Add splitter to the main layout
@@ -100,12 +100,6 @@ class BudgetUI(QWidget):
         labels = data['budgetName']
         amounts = data['budgetAmount']
 
-        # Function to wrap text for labels
-        def wrap_labels(labels):
-            return ['\n'.join(textwrap.wrap(label, width=10)) for label in labels]
-
-        wrapped_labels = wrap_labels(labels)  # Wrap long labels
-
         # Matplotlib figure with modernized styling
         figure, ax = plt.subplots(figsize=(6, 6), tight_layout=True)
         figure.patch.set_alpha(0)  # Transparent figure background
@@ -114,7 +108,7 @@ class BudgetUI(QWidget):
 
         wedges, texts, autotexts = ax.pie(
             amounts,
-            labels=wrapped_labels,
+            labels=labels,
             autopct='%1.1f%%',
             startangle=140,
             colors=colors,
@@ -170,6 +164,164 @@ class BudgetUI(QWidget):
         container_layout.addWidget(table)
         scroll_area.setWidget(container)
         return scroll_area
+
+    def create_scrollable_cards(self, csv_file):
+        # Load CSV data
+        data = pd.read_csv(csv_file)
+
+        # Create a scrollable widget
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
+        container = QWidget()
+        container_layout = QVBoxLayout(container)
+
+        # Loop through each row to create a card
+        for i, row in data.iterrows():
+            # Create a card widget
+            card = QWidget()
+            card_layout = QVBoxLayout(card)
+            card_layout.setContentsMargins(20, 20, 20, 20)  # Increased padding
+            card_layout.setSpacing(15)
+
+            # Add the budget name as a title at the top of the card
+            budget_name = row.get('budgetName', '')
+            title_label = QLabel(budget_name)
+            title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            title_label.setStyleSheet(
+                """
+                QLabel {
+                    font-size: 18px;
+                    font-weight: bold;
+                    background-color: #4caf50;
+                    color: white;
+                    padding: 10px;
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                }
+                """
+            )
+            card_layout.addWidget(title_label)
+
+            # Display budgetAmount and remainder side by side
+            amount_and_remainder_layout = QHBoxLayout()
+
+            budget_amount_label = QLabel(f"Amount: {row.get('budgetAmount', 'N/A')}")
+            budget_amount_label.setStyleSheet(
+                """
+                QLabel {
+                    font-size: 14px;
+                    color: #333;
+                    padding: 5px 30px;
+                }
+                """
+            )
+            amount_and_remainder_layout.addWidget(budget_amount_label)
+
+            remainder_label = QLabel(f"Remainder: {row.get('remainder', 'N/A')}")
+            remainder_label.setStyleSheet(
+                """
+                QLabel {
+                    font-size: 14px;
+                    color: white;
+                    background-color: #f44336;
+                    padding: 5px 30px;
+                    border-radius: 4px;
+                }
+                """
+            )
+            amount_and_remainder_layout.addWidget(remainder_label)
+
+            card_layout.addLayout(amount_and_remainder_layout)
+
+            # Add a timeline indicating startDate - endDate
+            start_date = row.get('startDate', 'N/A')
+            end_date = row.get('endDate', 'N/A')
+            timeline_label = QLabel(f"{start_date} - {end_date}")
+            timeline_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            timeline_label.setStyleSheet(
+                """
+                QLabel {
+                    font-size: 14px;
+                    color: #555;
+                    padding: 5px 30px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-weight: bold;
+                }
+                """
+            )
+            card_layout.addWidget(timeline_label)
+
+            # Create a button layout
+            button_layout = QHBoxLayout()
+            button_layout.setContentsMargins(10, 10, 10, 10)  # Added padding for buttons
+
+            # Add Edit button
+            edit_button = QPushButton("Edit")
+            edit_button.setStyleSheet(
+                """
+                QPushButton {
+                    background-color: #2196f3;
+                    color: white;
+                    border: none;
+                    padding: 10px 15px;
+                    border-radius: 4px;
+                }
+                QPushButton:hover {
+                    background-color: #1976d2;
+                }
+                """
+            )
+            edit_button.clicked.connect(lambda _, r=i: self.edit_row(r))
+            button_layout.addWidget(edit_button)
+
+            # Add Delete button
+            delete_button = QPushButton("Delete")
+            delete_button.setStyleSheet(
+                """
+                QPushButton {
+                    background-color: #f44336;
+                    color: white;
+                    border: none;
+                    padding: 10px 15px;
+                    border-radius: 4px;
+                }
+                QPushButton:hover {
+                    background-color: #d32f2f;
+                }
+                """
+            )
+            delete_button.clicked.connect(lambda _, r=i: self.delete_row(r))
+            button_layout.addWidget(delete_button)
+
+            # Add buttons to the card layout
+            card_layout.addLayout(button_layout)
+
+            # Style the card with a modernized look
+            card.setStyleSheet(
+                """
+                QWidget {
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    background-color: #ffffff;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                }
+                """
+            )
+
+            # Add the card to the container layout
+            container_layout.addWidget(card)
+
+        # Add some spacing between cards
+        container_layout.addStretch()
+
+        # Set the container to the scroll area
+        scroll_area.setWidget(container)
+        return scroll_area
+
+
+
+
 
     def edit_row(self, row):
         print(f"Edit row: {row}")
