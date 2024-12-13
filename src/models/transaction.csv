@@ -1,6 +1,8 @@
 id,amount,date,type,category
-1,999.0,1000-22-01,expense,transport
-2,10010101.0,10-10-10,expense,food
+1,123123.0,1000-22-01,expense,transport
+1,121212.0,1000-22-01,income,asnon
+1,123711.0,1000-22-02,expense,makan
+2,1.0,10-10-10,expense,food
 3,20.0,2023-10-01,income,job
 4,200.0,2024-01-04,income,side job
 5,1.0,2024-01-01,income,investments

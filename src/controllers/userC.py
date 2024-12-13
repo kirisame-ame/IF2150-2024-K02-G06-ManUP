@@ -23,9 +23,10 @@ def get_chart_data(user_id):
     
     # Filter transaksi berdasarkan id pengguna
     filtered_transactions = transaction[transaction['id'] == user_id]
+    filtered_transactions = transaction[(transaction['id'] == user_id) & (transaction['type'] == 'expense')]
     
     # Grup data berdasarkan 'type' dan hitung total 'amount'
-    data_group = filtered_transactions.groupby('type')['amount'].sum()
+    data_group = filtered_transactions.groupby('category')['amount'].sum()
     
     return data_group
 
@@ -39,10 +40,6 @@ def create_pie_chart(data_group, output_file='chart.png'):
     plt.tight_layout()
     plt.savefig(output_file, dpi=300)
     plt.close()
-
-
-
-
 
 def get_notifications():
     # Contoh data notifikasi

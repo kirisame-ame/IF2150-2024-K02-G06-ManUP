@@ -24,16 +24,12 @@ class HomeUI(QWidget):
         self.setup_ui()
 
     def setup_ui(self):
-        # Main layout
         main_layout = QVBoxLayout(self)
-        
-        # Add Navbar
+
         self.add_navbar(main_layout)
 
-        # Balance Section
-        self.add_balance_section(main_layout)
 
-        # Pie Chart Section
+        self.add_balance_section(main_layout)
         self.add_pie_chart_section(main_layout)
 
         # Transactions Section
@@ -124,12 +120,14 @@ class HomeUI(QWidget):
 
         if not summary.empty and {'type', 'amount', 'category'}.issubset(summary.columns):
             for _, row in summary.iterrows():
+                # Tentukan warna berdasarkan jenis transaksi
+                color = "#008000" if row['type'].lower() == 'income' else "#FF0000"
                 self.add_transaction_item(
                     layout,
                     row['type'],
                     row['category'],
                     row['amount'],
-                    "#008000" if row['amount'] > 0 else "#FF0000"
+                    color
                 )
         else:
             no_transaction_label = QLabel("No recent transactions available.")
