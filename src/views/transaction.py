@@ -2,17 +2,45 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea, QMessageBox, QInputDialog
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
-from controllers.transactionC import read_transaction, delete_transaction
+from controllers.transactionC import read_transaction, delete_transaction, get_transaction_by_type, get_transaction_by_category, get_transaction_by_date, sort_transaction_by_date
 
 from views.components.navbar import Navbar
 class TransactionUI(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setStyleSheet("""
+            QWidget {
+                background-color: white;
+                font-family: Arial, sans-serif;
+            }
+            QLabel {
+                font-size: 14px;
+                color: white;
+            }
+            QLineEdit, QComboBox {
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            QPushButton {
+                padding: 10px;
+                font-size: 14px;
+                background-color: #999969;
+                color: white;
+                border: none;
+                border-radius: 4px;
+            }
+            QPushButton:hover {
+                background-color: #45a049;
+            }
+        """)
         self.setup_ui()
         self.load_transactions()
+        
 
     def setup_ui(self):
         main_layout = QVBoxLayout(self)
@@ -31,6 +59,67 @@ class TransactionUI(QWidget):
 
         main_layout.addWidget(self.scroll_area)
         main_layout.addWidget(self.create_button)
+        filter_layout = QHBoxLayout()
+
+        self.type_filter = QPushButton("Filter by Type")
+        self.type_filter.clicked.connect(self.filter_by_type)
+        filter_layout.addWidget(self.type_filter)
+
+        self.category_filter = QPushButton("Filter by Category")
+        self.category_filter.clicked.connect(self.filter_by_category)
+        filter_layout.addWidget(self.category_filter)
+
+        self.date_filter = QPushButton("Filter by Date")
+        self.date_filter.clicked.connect(self.filter_by_date)
+        filter_layout.addWidget(self.date_filter)
+
+        self.sort_date_button = QPushButton("Sort by Date")
+        self.sort_date_button.clicked.connect(self.sort_by_date)
+        filter_layout.addWidget(self.sort_date_button)
+
+        main_layout.addLayout(filter_layout)
+
+    def filter_by_type(self):
+        types = ["expense", "income"]
+        input_dialog = QInputDialog(self)
+        input_dialog.setWindowTitle("Filter by Type")
+        input_dialog.setLabelText("Select transaction type:")
+        input_dialog.setComboBoxItems(types)
+        input_dialog.setStyleSheet("QLabel { color: black; } QLineEdit { color: black; } QComboBox { color: black; }")
+
+        if input_dialog.exec() == QInputDialog.DialogCode.Accepted:
+            type = input_dialog.textValue()
+            transactions = get_transaction_by_type(type)
+            self.display_filtered_transactions(transactions)
+
+    def filter_by_category(self):
+        categories = ["food", "transport", "bills", "shopping", "other","job", "side jobs", "investments", "gifts"]
+        category, ok = QInputDialog.getItem(self, 'Filter by Category', 'Select transaction category:', categories, 0, False)
+        if ok and category:
+            transactions = get_transaction_by_category(category)
+            self.display_filtered_transactions(transactions)
+
+    def filter_by_date(self):
+        date, ok = QInputDialog.getText(self, 'Filter by Date', 'Enter transaction date (YYYY-MM-DD):')
+        if ok:
+            transactions = get_transaction_by_date(date)
+            self.display_filtered_transactions(transactions)
+
+        # Set the stylesheet for QInputDialog to make the text color black
+        input_dialog = self.findChild(QInputDialog)
+        if input_dialog:
+            input_dialog.setStyleSheet("QLabel { color: black; } QLineEdit { color: black; }")
+
+    def sort_by_date(self):
+        transactions = sort_transaction_by_date()
+        self.display_filtered_transactions(transactions)
+
+    def display_filtered_transactions(self, transactions):
+        self.clear_transaction_cards()
+        self.scroll_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        for t in transactions.to_dict('records'):
+            transaction_widget = self.create_transaction_card(t)
+            self.scroll_layout.addWidget(transaction_widget)
 
     def load_transactions(self):
         transactions = read_transaction()
@@ -73,7 +162,7 @@ class TransactionUI(QWidget):
         left_layout.addWidget(logo_label)
 
         category_label = QLabel(f"{transaction['category']}")
-        category_label.setStyleSheet("font-size: 10px; font-weight: bold; margin-top: 2.5px;")
+        category_label.setStyleSheet("font-size: 10px; font-weight: bold; margin-top: 2.5px; color: black")
         category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         category_label.setFixedWidth(65)  # Sesuaikan lebar teks dengan lebar logo
         left_layout.addWidget(category_label)
@@ -92,7 +181,7 @@ class TransactionUI(QWidget):
         # Tombol Delete dan Edit
         button_layout = QHBoxLayout()
         delete_button = QPushButton("Delete")
-        delete_button.clicked.connect(lambda: self.delete_transaction(transaction['id']))
+        delete_button.clicked.connect(lambda: self.confirm_delete_transaction(transaction['id']))
         edit_button = QPushButton("Edit")
         edit_button.clicked.connect(lambda: self.edit_transaction(transaction['id']))
         button_layout.addWidget(delete_button)
@@ -113,6 +202,19 @@ class TransactionUI(QWidget):
         delete_transaction(id)
         self.load_transactions()
 
+    def confirm_delete_transaction(self, id):
+        msg_box = QMessageBox()
+        msg_box.setIcon(QMessageBox.Icon.Warning)
+        msg_box.setWindowTitle("Konfirmasi")
+        msg_box.setText("Apakah anda yakin untuk mendelete transaksi?")
+        msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        msg_box.setDefaultButton(QMessageBox.StandardButton.No)
+        result = msg_box.exec()
+
+        if result == QMessageBox.StandardButton.Yes:
+            self.delete_transaction(id)
+
+
     def edit_transaction(self, id):
         from views.update_transaction import TransactionFormEditUI
         self.edit_form = TransactionFormEditUI(self, id)
@@ -124,3 +226,25 @@ class TransactionUI(QWidget):
         self.create_form = TransactionFormUI(self)
         self.create_form.show()
         self.create_form.closed.connect(self.load_transactions)
+        
+# def metodo(self):
+#     methods = ["Watershed", "Hough Circle"]
+#     input_dialog = QInputDialog(self)
+#     input_dialog.setWindowTitle("Choose Method")
+#     input_dialog.setLabelText("Select counting method:")
+#     input_dialog.setComboBoxItems(methods)
+#     # Set a custom stylesheet for QInputDialog
+#     input_dialog.setStyleSheet("color: black;")
+#     method, ok = input_dialog.getItem(self, "Choose Method", "Select counting method:", methods, 0, False)
+#     # after you close the white one,
+#     # the correct dialog with black text should show up
+#     input_dialog.show() 
+
+#     if ok and method:
+#         if method == "Watershed":
+#             self.m = 'w'
+#         elif method == "Hough Circle":
+#             self.m = 'h'
+#         self.counter()
+#     else:
+#         QMessageBox.information(self, "No Selection", "You didn't select a method.")

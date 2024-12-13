@@ -15,6 +15,33 @@ class TransactionFormUI(QWidget):
     def __init__(self, transaction_ui):
         super().__init__()
         self.transaction_ui = transaction_ui
+        self.setStyleSheet("""
+            QWidget {
+                background-color: white;
+                font-family: Arial, sans-serif;
+            }
+            QLabel {
+                font-size: 14px;
+                color: black;
+            }
+            QLineEdit, QComboBox {
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            QPushButton {
+                padding: 10px;
+                font-size: 14px;
+                background-color: #4CAF50; 
+                color: white;
+                border: none;
+                border-radius: 4px;
+            }
+            QPushButton:hover {
+                background-color: #45a049;
+            }
+        """)
         self.setup_ui()
 
     def setup_ui(self):
@@ -22,24 +49,28 @@ class TransactionFormUI(QWidget):
 
         self.date_label = QLabel("Date (YYYY-MM-DD):")
         self.date_input = QLineEdit()
+        self.date_input.setStyleSheet("color: black;")
         input_layout.addWidget(self.date_label)
         input_layout.addWidget(self.date_input)
         
         self.amount_label = QLabel("Amount:")
         self.amount_input = QLineEdit()
+        self.amount_input.setStyleSheet("color: black;")
         input_layout.addWidget(self.amount_label)
         input_layout.addWidget(self.amount_input)
         
         self.type_label = QLabel("Type:")
         self.type_input = QComboBox()
+        self.type_input.setStyleSheet("color: black;")
         self.type_input.addItems(["Select Type", "expense", "income"])
         self.type_input.currentTextChanged.connect(self.update_category)
-        self.type_input.currentTextChanged.connect(self.remove_select_type)
+        self.type_input.currentIndexChanged.connect(self.remove_select_type)
         input_layout.addWidget(self.type_label)
         input_layout.addWidget(self.type_input)
         
         self.category_label = QLabel("Category:")
         self.category_input = QComboBox()
+        self.category_input.setStyleSheet("color: black;")
         input_layout.addWidget(self.category_label)
         input_layout.addWidget(self.category_input)
 
@@ -80,13 +111,16 @@ class TransactionFormUI(QWidget):
         error_dialog.exec()
     
     def remove_select_type(self, text):
-        if text != "Select Type":
-            self.type_input.removeItem(0)
+        if text != "Select Type" and self.type_input.findText("Select Type") != -1:
+            self.type_input.removeItem(self.type_input.findText("Select Type"))
     def update_category(self, text):
-        self.category_input.clear()
-        if text == "expense":
+        if text == "Select Type":
+            self.category_input.clear()
+        elif text == "expense":
+            self.category_input.clear()
             self.category_input.addItems(["food", "transport", "bills", "shopping", "other"])
         elif text == "income":
+            self.category_input.clear()
             self.category_input.addItems(["job", "side jobs", "investments", "gifts", "other"])
     # def form_create_transaction(self):
     #     id = getNewId()
