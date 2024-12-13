@@ -3,6 +3,6 @@ src/.qtcreator/project.json
 src/.qtcreator/project.json.user
 *.pyc
 
-vscode/PythonImportHelper-v2-Completion.json
 
 venv/
+.vscode/PythonImportHelper-v2-Completion.json
