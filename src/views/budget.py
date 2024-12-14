@@ -211,25 +211,12 @@ class BudgetUI(QWidget):
 
             amount_and_remainder_layout = QHBoxLayout()
             budget_amount_label = QLabel(f"Amount: {row.get('budgetAmount', 'N/A'):,.2f}")
+            budget_amount_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
             budget_amount_label.setStyleSheet(
                 """
                 QLabel {
                     font-size: 20px;
                     font-weight: bold;
-                    color: #333;
-                    padding: 5px 30px;
-                    border-radius: 10px;
-                    border: 1px solid #d3d3d3;
-                }
-                """
-            )
-            amount_and_remainder_layout.addWidget(budget_amount_label)
-
-            remainder_label = QLabel(f"Remainder: {row.get('remainder', 'N/A')}")
-            remainder_label.setStyleSheet(
-                """
-                QLabel {
-                    font-size: 20px;
                     color: white;
                     background-color: #f44336;
                     padding: 5px 30px;
@@ -238,9 +225,26 @@ class BudgetUI(QWidget):
                 }
                 """
             )
-            amount_and_remainder_layout.addWidget(remainder_label)
 
-            card_layout.addLayout(amount_and_remainder_layout)
+            card_layout.addWidget(budget_amount_label)
+            # amount_and_remainder_layout.addWidget(budget_amount_label)
+
+            # remainder_label = QLabel(f"Remainder: {row.get('remainder', 'N/A')}")
+            # remainder_label.setStyleSheet(
+            #     """
+            #     QLabel {
+            #         font-size: 20px;
+            #         color: white;
+            #         background-color: #f44336;
+            #         padding: 5px 30px;
+            #         border-radius: 10px;
+            #         border: 1px solid #d3d3d3;
+            #     }
+            #     """
+            # )
+            # amount_and_remainder_layout.addWidget(remainder_label)
+
+            # card_layout.addLayout(amount_and_remainder_layout)
 
             start_date = row.get('startDate', 'N/A')
             end_date = row.get('endDate', 'N/A')
@@ -343,21 +347,49 @@ class BudgetUI(QWidget):
 
         # Save button
         save_button = QPushButton("Save")
-        save_button.clicked.connect(lambda: self.save_budget_changes(row, fields, dialog))
+        save_button.setStyleSheet(
+            """
+            QPushButton {
+                font-size: 14px;
+                background-color: #2196f3;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+            }
+            QPushButton:hover {
+                background-color: #1976d2;
+            }
+            """
+        )
+        save_button.clicked.connect(
+            lambda: self.save_edit(
+                row,
+                row.get('budgetName', ''),
+                fields["Budget Amount"],
+                fields["Remainder"],
+                fields["Start Date (YYYY-MM-DD)"],
+                fields["End Date (YYYY-MM-DD)"],
+                dialog
+            )
+        )
         dialog_layout.addWidget(save_button)
 
         dialog.exec()
 
-    def save_budget_changes(self, row, fields, dialog):
+    def save_edit(self, row, name_input, amount_input, remainder_input, start_date_input, end_date_input, dialog):
         try:
-            # Update the CSV file with new values
-            data = pd.read_csv(self.csv_path)
-            for key, field in fields.items():
-                column_name = key.split('(')[0].strip()  # Extract column name from label
-                if column_name in data.columns:
-                    data.loc[data['budgetName'] == row['budgetName'], column_name] = field.text()
-            data.to_csv(self.csv_path, index=False)
-            self.refresh_ui()
-            dialog.accept()
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to save changes: {e}")
+            updated_data = {
+                'id': row['id'],
+                'budgetName': name_input,
+                'budgetAmount': float(amount_input.text()),
+                'remainder': float(remainder_input.text()),
+                'startDate': start_date_input.text(),
+                'endDate': end_date_input.text()
+            }
+            updateBudget(updated_data)  # Update the budget data
+            self.budget_updated.emit() # Emit signal to refresh the UI
+            self.refresh_ui()  # Refresh the UI to reflect changes
+            dialog.close()
+        except ValueError:
+            QMessageBox.warning(self, "Invalid Input", "Please ensure all fields are correctly filled.")
