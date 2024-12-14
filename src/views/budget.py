@@ -12,8 +12,9 @@ import matplotlib.pyplot as plt
 from views.components.navbar import Navbar
 from controllers.budgetC import deleteBudget, updateBudget
 
-
+from PyQt6.QtCore import pyqtSignal
 class BudgetUI(QWidget):
+    budget_updated = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.pie_chart = None
@@ -103,7 +104,7 @@ class BudgetUI(QWidget):
         # Create the pie chart
         wedges, texts, autotexts = ax.pie(
             amounts,
-            labels=[label if amount > 0 else '' for label, amount in zip(labels, amounts)],
+            labels=[label.capitalize() if amount > 0 else '' for label, amount in zip(labels, amounts)],
             autopct=autopct_func,
             startangle=140,
             colors=colors,
@@ -145,7 +146,7 @@ class BudgetUI(QWidget):
             )
 
             budget_name = row.get('budgetName', '')
-            title_label = QLabel(budget_name)
+            title_label = QLabel(budget_name.capitalize())
             title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
             title_label.setStyleSheet(
                 """
@@ -164,7 +165,7 @@ class BudgetUI(QWidget):
             card_layout.addWidget(title_label)
 
             amount_and_remainder_layout = QHBoxLayout()
-            budget_amount_label = QLabel(f"Amount: {row.get('budgetAmount', 'N/A')}")
+            budget_amount_label = QLabel(f"Amount: {row.get('budgetAmount', 'N/A'):,.2f}")
             budget_amount_label.setStyleSheet(
                 """
                 QLabel {
@@ -352,6 +353,7 @@ class BudgetUI(QWidget):
 
 
 
+
     def save_edit(self, row, name_input, amount_input, remainder_input, start_date_input, end_date_input, dialog):
         try:
             updated_data = {
@@ -364,6 +366,7 @@ class BudgetUI(QWidget):
             }
             updateBudget(updated_data)  # Update the budget data
             self.refresh_ui()  # Refresh the UI to reflect changes
+            self.budget_updated.emit()  # Emit signal to update the budget in the main window
             dialog.close()
         except ValueError:
             QMessageBox.warning(self, "Invalid Input", "Please ensure all fields are correctly filled.")
@@ -372,7 +375,7 @@ class BudgetUI(QWidget):
 
     def confirm_delete(self, row):
         reply = QMessageBox.question(
-            self, "Confirm Delete", f"Are you sure you want to delete {row['budgetName']}?",
+            self, "Confirm Delete", f"Are you sure you want to delete {row['budgetName'].capitalize()}?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:

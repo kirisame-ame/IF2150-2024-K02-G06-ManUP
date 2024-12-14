@@ -5,10 +5,11 @@ sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea, QMessageBox, QInputDialog
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
-from controllers.transactionC import read_transaction, delete_transaction, get_transaction_by_type, get_transaction_by_category, get_transaction_by_date, sort_transaction_by_date
-
+from controllers.transactionC import read_transaction, delete_transaction, get_transaction_by_type, get_transaction_by_category, get_transaction_by_date, sort_transaction_by_date_asc, sort_transaction_by_date_desc
+from PyQt6.QtCore import pyqtSignal
 from views.components.navbar import Navbar
 class TransactionUI(QWidget):
+    transaction_updated = pyqtSignal()
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setStyleSheet("""
@@ -111,8 +112,13 @@ class TransactionUI(QWidget):
             input_dialog.setStyleSheet("QLabel { color: black; } QLineEdit { color: black; }")
 
     def sort_by_date(self):
-        transactions = sort_transaction_by_date()
-        self.display_filtered_transactions(transactions)
+        date, ok = QInputDialog.getItem(self, 'Sort by Date', 'Select sorting order:', ['Ascending', 'Descending'], 0, False)
+        if ok and date:
+            if date == 'Ascending':
+                transactions = sort_transaction_by_date_asc()
+            else:
+                transactions = sort_transaction_by_date_desc()
+            self.display_filtered_transactions(transactions)
 
     def display_filtered_transactions(self, transactions):
         self.clear_transaction_cards()
@@ -146,9 +152,9 @@ class TransactionUI(QWidget):
         logo_label.setFixedSize(65, 65)
         logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         if transaction['type'] == 'expense':
-            logo_label.setStyleSheet("background-color: red;")
+            logo_label.setStyleSheet("background-color: #e80b67;")
         else:
-            logo_label.setStyleSheet("background-color: green;")
+            logo_label.setStyleSheet("background-color: #02b429;")
         category = transaction['category']
         logo_path = os.path.join(os.getcwd(), 'src', 'public', f'{category}.png')
         if os.path.exists(logo_path):
@@ -161,8 +167,11 @@ class TransactionUI(QWidget):
         logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         left_layout.addWidget(logo_label)
 
-        category_label = QLabel(f"{transaction['category']}")
-        category_label.setStyleSheet("font-size: 10px; font-weight: bold; margin-top: 2.5px; color: black")
+        category_label = QLabel(f"{transaction['category'].capitalize()}")
+        if transaction['type'] == 'expense':
+            category_label.setStyleSheet("font-size: 10px; font-weight: bold; margin-top: 2.5px; color: white; background-color: #e80b67;")
+        else:
+            category_label.setStyleSheet("font-size: 10px; font-weight: bold; margin-top: 2.5px; color: white; background-color: #02b429;")
         category_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         category_label.setFixedWidth(65)  # Sesuaikan lebar teks dengan lebar logo
         left_layout.addWidget(category_label)
@@ -171,11 +180,12 @@ class TransactionUI(QWidget):
         # Bagian Tengah: Amount dan Tombol
         center_layout = QVBoxLayout()
         # Amount
-        amount_label = QLabel(f"Rp {transaction['amount']}")
+        amount_label = QLabel(f"Rp {transaction['amount']:,.2f}")
         if transaction['type'] == 'expense':
             amount_label.setStyleSheet("color: #D43A1C; font-weight: bold; font-size: 16px; border:none;")
         else:
             amount_label.setStyleSheet("color: #1CD43A; font-weight: bold; font-size: 16px; border:none;")
+
         center_layout.addWidget(amount_label)
 
         # Tombol Delete dan Edit
@@ -213,6 +223,7 @@ class TransactionUI(QWidget):
 
         if result == QMessageBox.StandardButton.Yes:
             self.delete_transaction(id)
+            self.transaction_updated.emit()
 
 
     def edit_transaction(self, id):
@@ -220,12 +231,14 @@ class TransactionUI(QWidget):
         self.edit_form = TransactionFormEditUI(self, id)
         self.edit_form.show()
         self.edit_form.closed.connect(self.load_transactions)
+        self.transaction_updated.emit()
 
     def open_create_form(self):
         from views.create_transaction import TransactionFormUI
         self.create_form = TransactionFormUI(self)
         self.create_form.show()
         self.create_form.closed.connect(self.load_transactions)
+        self.transaction_updated.emit()
         
 # def metodo(self):
 #     methods = ["Watershed", "Hough Circle"]

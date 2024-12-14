@@ -53,9 +53,13 @@ def get_transaction_by_date(date):
     transaction = transaction[transaction['date'] == date]
     return transaction
 
-def sort_transaction_by_date():
+def sort_transaction_by_date_asc():
     transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))
     transaction = transaction.sort_values('date')
+    return transaction
+def sort_transaction_by_date_desc():
+    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))
+    transaction = transaction.sort_values('date', ascending=False)
     return transaction
 
 def getNewId():

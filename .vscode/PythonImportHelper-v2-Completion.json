@@ -27,6 +27,135 @@
         "documentation": {}
     },
     {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "getBudgetAllocations",
+        "importPath": "controllers.budgetC",
+        "description": "controllers.budgetC",
+        "isExtraImport": true,
+        "detail": "controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "deleteBudget",
+        "importPath": "controllers.budgetC",
+        "description": "controllers.budgetC",
+        "isExtraImport": true,
+        "detail": "controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "updateBudget",
+        "importPath": "controllers.budgetC",
+        "description": "controllers.budgetC",
+        "isExtraImport": true,
+        "detail": "controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "read_transaction",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "create_transaction",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "getNewId",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "delete_transaction",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "read_transaction",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "delete_transaction",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "get_transaction_by_type",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "get_transaction_by_category",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "get_transaction_by_date",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "sort_transaction_by_date_asc",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "sort_transaction_by_date_desc",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "update_transaction",
+        "importPath": "controllers.transactionC",
+        "description": "controllers.transactionC",
+        "isExtraImport": true,
+        "detail": "controllers.transactionC",
+        "documentation": {}
+    },
+    {
         "label": "QWidget",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
@@ -67,7 +196,7 @@
         "documentation": {}
     },
     {
-        "label": "QWidget",
+        "label": "QApplication",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
         "isExtraImport": true,
@@ -91,7 +220,15 @@
         "documentation": {}
     },
     {
-        "label": "QPushButton",
+        "label": "QScrollArea",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
         "isExtraImport": true,
@@ -100,6 +237,70 @@
     },
     {
         "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QDialog",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMessageBox",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QFrame",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QSpacerItem",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QSizePolicy",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QSplitter",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
         "isExtraImport": true,
@@ -196,6 +397,70 @@
     },
     {
         "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QHBoxLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QScrollArea",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMessageBox",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QInputDialog",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
         "isExtraImport": true,
@@ -291,6 +556,22 @@
         "documentation": {}
     },
     {
+        "label": "QMessageBox",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QInputDialog",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QWidget",
         "importPath": "PyQt6.QtWidgets",
         "description": "PyQt6.QtWidgets",
@@ -379,87 +660,31 @@
         "documentation": {}
     },
     {
-        "label": "Navbar",
-        "importPath": "views.components.navbar",
-        "description": "views.components.navbar",
+        "label": "Qt",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
         "isExtraImport": true,
-        "detail": "views.components.navbar",
-        "documentation": {}
-    },
-    {
-        "label": "Navbar",
-        "importPath": "views.components.navbar",
-        "description": "views.components.navbar",
-        "isExtraImport": true,
-        "detail": "views.components.navbar",
-        "documentation": {}
-    },
-    {
-        "label": "Navbar",
-        "importPath": "views.components.navbar",
-        "description": "views.components.navbar",
-        "isExtraImport": true,
-        "detail": "views.components.navbar",
-        "documentation": {}
-    },
-    {
-        "label": "Navbar",
-        "importPath": "views.components.navbar",
-        "description": "views.components.navbar",
-        "isExtraImport": true,
-        "detail": "views.components.navbar",
-        "documentation": {}
-    },
-    {
-        "label": "create_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
-        "label": "getNewId",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
-        "label": "delete_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
-        "label": "read_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
-        "label": "delete_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
-        "label": "update_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
+        "detail": "PyQt6.QtCore",
         "documentation": {}
     },
     {
         "label": "pyqtSignal",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "pyqtSignal",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
         "importPath": "PyQt6.QtCore",
         "description": "PyQt6.QtCore",
         "isExtraImport": true,
@@ -483,6 +708,62 @@
         "documentation": {}
     },
     {
+        "label": "pyqtSignal",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasQTAgg",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasQTAgg",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "isExtraImport": true,
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "isExtraImport": true,
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "isExtraImport": true,
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "Navbar",
+        "importPath": "views.components.navbar",
+        "description": "views.components.navbar",
+        "isExtraImport": true,
+        "detail": "views.components.navbar",
+        "documentation": {}
+    },
+    {
         "label": "re",
         "kind": 6,
         "isExtraImport": true,
@@ -500,11 +781,75 @@
         "documentation": {}
     },
     {
-        "label": "HomeUI",
-        "importPath": "views.home",
-        "description": "views.home",
+        "label": "QPixmap",
+        "importPath": "PyQt6.QtGui",
+        "description": "PyQt6.QtGui",
         "isExtraImport": true,
-        "detail": "views.home",
+        "detail": "PyQt6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "get_four_most_recent_transaction",
+        "importPath": "controllers.homeC",
+        "description": "controllers.homeC",
+        "isExtraImport": true,
+        "detail": "controllers.homeC",
+        "documentation": {}
+    },
+    {
+        "label": "pie_chart_for_category_in_type_expense",
+        "importPath": "controllers.homeC",
+        "description": "controllers.homeC",
+        "isExtraImport": true,
+        "detail": "controllers.homeC",
+        "documentation": {}
+    },
+    {
+        "label": "remainder",
+        "importPath": "controllers.homeC",
+        "description": "controllers.homeC",
+        "isExtraImport": true,
+        "detail": "controllers.homeC",
+        "documentation": {}
+    },
+    {
+        "label": "get_four_most_recent_transaction",
+        "importPath": "controllers.homeC",
+        "description": "controllers.homeC",
+        "isExtraImport": true,
+        "detail": "controllers.homeC",
+        "documentation": {}
+    },
+    {
+        "label": "BudgetUI",
+        "importPath": "views.budget",
+        "description": "views.budget",
+        "isExtraImport": true,
+        "detail": "views.budget",
+        "documentation": {}
+    },
+    {
+        "label": "BudgetUI",
+        "importPath": "views.budget",
+        "description": "views.budget",
+        "isExtraImport": true,
+        "detail": "views.budget",
+        "documentation": {}
+    },
+    {
+        "label": "TransactionFormUI",
+        "importPath": "views.create_transaction",
+        "description": "views.create_transaction",
+        "isExtraImport": true,
+        "detail": "views.create_transaction",
+        "documentation": {}
+    },
+    {
+        "label": "TransactionFormEditUI",
+        "importPath": "views.update_transaction",
+        "description": "views.update_transaction",
+        "isExtraImport": true,
+        "detail": "views.update_transaction",
         "documentation": {}
     },
     {
@@ -516,11 +861,163 @@
         "documentation": {}
     },
     {
-        "label": "BudgetUI",
-        "importPath": "views.budget",
-        "description": "views.budget",
+        "label": "TransactionUI",
+        "importPath": "views.transaction",
+        "description": "views.transaction",
         "isExtraImport": true,
-        "detail": "views.budget",
+        "detail": "views.transaction",
+        "documentation": {}
+    },
+    {
+        "label": "HomeUI",
+        "importPath": "views.home",
+        "description": "views.home",
+        "isExtraImport": true,
+        "detail": "views.home",
+        "documentation": {}
+    },
+    {
+        "label": "getBudgetAllocations",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def getBudgetAllocations():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    return budget\ndef updateBudget(data):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget.loc[budget['id'] == data['id'], 'budgetName'] = data['budgetName']\n    budget.loc[budget['id'] == data['id'], 'budgetAmount'] = data['budgetAmount']\n    budget.loc[budget['id'] == data['id'], 'remainder'] = data['remainder']\n    budget.loc[budget['id'] == data['id'], 'startDate'] = data['startDate']\n    budget.loc[budget['id'] == data['id'], 'endDate'] = data['endDate']",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "updateBudget",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def updateBudget(data):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget.loc[budget['id'] == data['id'], 'budgetName'] = data['budgetName']\n    budget.loc[budget['id'] == data['id'], 'budgetAmount'] = data['budgetAmount']\n    budget.loc[budget['id'] == data['id'], 'remainder'] = data['remainder']\n    budget.loc[budget['id'] == data['id'], 'startDate'] = data['startDate']\n    budget.loc[budget['id'] == data['id'], 'endDate'] = data['endDate']\n    budget.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)\ndef createBudget(data):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "createBudget",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def createBudget(data):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = pd.concat([budget, pd.DataFrame([data])], ignore_index=True)\n    budget.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)\ndef getBudget(id):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['id'] == id]\n    return budget\ndef deleteBudget(id):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "getBudget",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def getBudget(id):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['id'] == id]\n    return budget\ndef deleteBudget(id):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['id'] != id]\n    budget.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)\ndef getBudgetByStartDate(date):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "deleteBudget",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def deleteBudget(id):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['id'] != id]\n    budget.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)\ndef getBudgetByStartDate(date):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['startDate'] == date]\n    return budget\ndef getBudgetByEndDate(date):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "getBudgetByStartDate",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def getBudgetByStartDate(date):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['startDate'] == date]\n    return budget\ndef getBudgetByEndDate(date):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['endDate'] == date]\n    return budget\ndef getBudgetByBudgetName(budgetName):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "getBudgetByEndDate",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def getBudgetByEndDate(date):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['endDate'] == date]\n    return budget\ndef getBudgetByBudgetName(budgetName):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['budgetName'] == budgetName]\n    return budget\ndef getBudgetByBudgetAmount(budgetAmount):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "getBudgetByBudgetName",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def getBudgetByBudgetName(budgetName):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['budgetName'] == budgetName]\n    return budget\ndef getBudgetByBudgetAmount(budgetAmount):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['budgetAmount'] == budgetAmount]\n    return budget\ndef sortBudgetByBudgetAmount():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "getBudgetByBudgetAmount",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def getBudgetByBudgetAmount(budgetAmount):\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget[budget['budgetAmount'] == budgetAmount]\n    return budget\ndef sortBudgetByBudgetAmount():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget.sort_values('budgetAmount')\n    return budget\ndef sortBudgetByStartDate():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "sortBudgetByBudgetAmount",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def sortBudgetByBudgetAmount():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget.sort_values('budgetAmount')\n    return budget\ndef sortBudgetByStartDate():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget.sort_values('startDate')\n    return budget\ndef sortBudgetByEndDate():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "sortBudgetByStartDate",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def sortBudgetByStartDate():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget.sort_values('startDate')\n    return budget\ndef sortBudgetByEndDate():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget.sort_values('endDate')\n    return budget\ndef getNewIdB():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "sortBudgetByEndDate",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def sortBudgetByEndDate():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    budget = budget.sort_values('endDate')\n    return budget\ndef getNewIdB():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    return budget['id'].max() + 1",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "getNewIdB",
+        "kind": 2,
+        "importPath": "src.controllers.budgetC",
+        "description": "src.controllers.budgetC",
+        "peekOfCode": "def getNewIdB():\n    budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))\n    return budget['id'].max() + 1",
+        "detail": "src.controllers.budgetC",
+        "documentation": {}
+    },
+    {
+        "label": "get_four_most_recent_transaction",
+        "kind": 2,
+        "importPath": "src.controllers.homeC",
+        "description": "src.controllers.homeC",
+        "peekOfCode": "def get_four_most_recent_transaction():\n    data = read_transaction()\n    data = data.sort_values('id', ascending=False).head(4)\n    return data.to_dict(orient='records')\ndef remainder():\n    data = read_transaction()\n    income = data[data['type'] == 'income']['amount'].sum()\n    expense = data[data['type'] == 'expense']['amount'].sum()\n    total_budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))['budgetAmount'].sum()\n    remainder = total_budget + income - expense",
+        "detail": "src.controllers.homeC",
+        "documentation": {}
+    },
+    {
+        "label": "remainder",
+        "kind": 2,
+        "importPath": "src.controllers.homeC",
+        "description": "src.controllers.homeC",
+        "peekOfCode": "def remainder():\n    data = read_transaction()\n    income = data[data['type'] == 'income']['amount'].sum()\n    expense = data[data['type'] == 'expense']['amount'].sum()\n    total_budget = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))['budgetAmount'].sum()\n    remainder = total_budget + income - expense\n    return remainder\ndef pie_chart_for_category_in_type_expense():\n    budget_data = getBudgetAllocations()\n    budget_amount = budget_data['budgetAmount']",
+        "detail": "src.controllers.homeC",
+        "documentation": {}
+    },
+    {
+        "label": "pie_chart_for_category_in_type_expense",
+        "kind": 2,
+        "importPath": "src.controllers.homeC",
+        "description": "src.controllers.homeC",
+        "peekOfCode": "def pie_chart_for_category_in_type_expense():\n    budget_data = getBudgetAllocations()\n    budget_amount = budget_data['budgetAmount']\n    budget_names = budget_data['budgetName']\n    budget_amount.index = budget_names\n    # Append the remainder to pie chart\n    remainder_ = remainder()\n    budget_amount = pd.concat([budget_amount, pd.Series(remainder_, index=['Remainder'])])\n    # Create a matplotlib figure and axis with transparent background\n    figure, ax = plt.subplots(figsize=(5, 5), tight_layout=True)",
+        "detail": "src.controllers.homeC",
         "documentation": {}
     },
     {
@@ -591,7 +1088,7 @@
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def get_transaction_by_category(category):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['category'] == category]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
+        "peekOfCode": "def get_transaction_by_category(category):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['category'] == category]\n    return transaction\ndef get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date_asc():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
@@ -600,16 +1097,25 @@
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction.sort_values('date')\n    return transaction\ndef getNewId():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
+        "peekOfCode": "def get_transaction_by_date(date):\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction[transaction['date'] == date]\n    return transaction\ndef sort_transaction_by_date_asc():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction.sort_values('date')\n    return transaction\ndef sort_transaction_by_date_desc():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
     {
-        "label": "sort_transaction_by_date",
+        "label": "sort_transaction_by_date_asc",
         "kind": 2,
         "importPath": "src.controllers.transactionC",
         "description": "src.controllers.transactionC",
-        "peekOfCode": "def sort_transaction_by_date():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction.sort_values('date')\n    return transaction\ndef getNewId():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    return transaction['id'].max() + 1",
+        "peekOfCode": "def sort_transaction_by_date_asc():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction.sort_values('date')\n    return transaction\ndef sort_transaction_by_date_desc():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction.sort_values('date', ascending=False)\n    return transaction\ndef getNewId():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))",
+        "detail": "src.controllers.transactionC",
+        "documentation": {}
+    },
+    {
+        "label": "sort_transaction_by_date_desc",
+        "kind": 2,
+        "importPath": "src.controllers.transactionC",
+        "description": "src.controllers.transactionC",
+        "peekOfCode": "def sort_transaction_by_date_desc():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    transaction = transaction.sort_values('date', ascending=False)\n    return transaction\ndef getNewId():\n    transaction = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'transaction.csv'))\n    return transaction['id'].max() + 1",
         "detail": "src.controllers.transactionC",
         "documentation": {}
     },
@@ -636,7 +1142,7 @@
         "kind": 6,
         "importPath": "src.views.budget",
         "description": "src.views.budget",
-        "peekOfCode": "class BudgetUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # Central content placeholder\n        self.content = QLabel(\"Welcome to the Budget Page!!!\")\n        # add navbar",
+        "peekOfCode": "class BudgetUI(QWidget):\n    budget_updated = pyqtSignal()\n    def __init__(self):\n        super().__init__()\n        self.pie_chart = None\n        self.scroll_area = None\n        self.budget_layout = None  # Store the budget layout\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout",
         "detail": "src.views.budget",
         "documentation": {}
     },
@@ -645,7 +1151,7 @@
         "kind": 6,
         "importPath": "src.views.create_transaction",
         "description": "src.views.create_transaction",
-        "peekOfCode": "class TransactionFormUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.setup_ui()\n    def setup_ui(self):\n        input_layout = QVBoxLayout(self)\n        self.date_label = QLabel(\"Date (YYYY-MM-DD):\")\n        self.date_input = QLineEdit()",
+        "peekOfCode": "class TransactionFormUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.setStyleSheet(\"\"\"\n            QWidget {\n                background-color: white;\n                font-family: Arial, sans-serif;\n            }",
         "detail": "src.views.create_transaction",
         "documentation": {}
     },
@@ -663,7 +1169,7 @@
         "kind": 6,
         "importPath": "src.views.home",
         "description": "src.views.home",
-        "peekOfCode": "class HomeUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # add navbar\n        self.navbar = Navbar()\n        main_layout.addWidget(self.navbar)",
+        "peekOfCode": "class HomeUI(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.budget_ui = BudgetUI()\n        self.transaction_ui = TransactionUI()\n        self.setup_ui()\n    def setup_ui(self):\n        # Main layout\n        main_layout = QVBoxLayout(self)\n        # add navbar",
         "detail": "src.views.home",
         "documentation": {}
     },
@@ -672,7 +1178,7 @@
         "kind": 6,
         "importPath": "src.views.transaction",
         "description": "src.views.transaction",
-        "peekOfCode": "class TransactionUI(QWidget):\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.setup_ui()\n        self.load_transactions()\n    def setup_ui(self):\n        main_layout = QVBoxLayout(self)\n        # add navbar\n        self.navbar = Navbar()\n        main_layout.addWidget(self.navbar)",
+        "peekOfCode": "class TransactionUI(QWidget):\n    transaction_updated = pyqtSignal()\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.setStyleSheet(\"\"\"\n            QWidget {\n                background-color: white;\n                font-family: Arial, sans-serif;\n            }\n            QLabel {",
         "detail": "src.views.transaction",
         "documentation": {}
     },
@@ -681,7 +1187,7 @@
         "kind": 6,
         "importPath": "src.views.update_transaction",
         "description": "src.views.update_transaction",
-        "peekOfCode": "class TransactionFormEditUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui, id):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.id = id\n        self.setup_ui()\n    def setup_ui(self):\n        input_layout = QVBoxLayout(self)\n        self.date_label = QLabel(\"Date:\")",
+        "peekOfCode": "class TransactionFormEditUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui, id):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.id = id\n        self.setup_ui()\n    def setup_ui(self):\n        self.setWindowTitle(\"Edit Transaction\")\n        self.setStyleSheet(\"\"\"",
         "detail": "src.views.update_transaction",
         "documentation": {}
     },
