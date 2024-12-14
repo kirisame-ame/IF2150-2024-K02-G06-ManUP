@@ -23,6 +23,7 @@ class BudgetUI(QWidget):
         self.setup_ui()
 
     def setup_ui(self):
+
         # Main layout
         main_layout = QVBoxLayout(self)
 
