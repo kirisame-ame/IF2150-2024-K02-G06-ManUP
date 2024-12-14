@@ -174,7 +174,7 @@ class TransactionUI(QWidget):
         if transaction['type'] == 'expense':
             amount_label.setStyleSheet("color: #D43A1C; font-weight: bold; font-size: 16px; border:none;")
         else:
-            amount_label.setStyleSheet("color: #1CD43A; font-weight: bold; font-size: 16px; border:none;")
+            amount_label.setStyleSheet("color: #1CA43A; font-weight: bold; font-size: 16px; border:none;")
 
         center_layout.addWidget(amount_label)
 

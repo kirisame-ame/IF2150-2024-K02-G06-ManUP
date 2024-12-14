@@ -53,7 +53,6 @@ class HomeController(QMainWindow):
         # Remove the current UI
         self.main_layout.removeWidget(self.current_ui)
         self.current_ui.hide()
-        
         # Add the new UI
         self.current_ui = new_ui
         self.main_layout.addWidget(self.current_ui)
