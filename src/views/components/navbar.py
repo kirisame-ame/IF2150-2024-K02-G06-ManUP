@@ -34,7 +34,7 @@ class Navbar(QWidget):
                 background-color: #e0e0e0;
             }
             QPushButton:pressed {
-                background-color: #000000;
+                background-color: #f0f0f0;
             }
             """
         )

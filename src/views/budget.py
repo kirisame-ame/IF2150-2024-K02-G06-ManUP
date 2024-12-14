@@ -129,6 +129,7 @@ class BudgetUI(QWidget):
 
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
+        scroll_area.setStyleSheet("background-color: transparent;")
         container = QWidget()
         container_layout = QVBoxLayout(container)
 
@@ -139,8 +140,8 @@ class BudgetUI(QWidget):
             card_layout.setSpacing(10)
             card.setStyleSheet(
                 """
-                border-radius: 10px;
-                border: 2px solid #d3d3d3;
+                background-color: #ffffff;
+                border-bottom: 1px solid #d3d3d3;
                 """
             )
 
@@ -155,8 +156,9 @@ class BudgetUI(QWidget):
                     background-color: #4caf50;
                     color: white;
                     padding: 10px;
-                    border-top-left-radius: 8px;
-                    border-top-right-radius: 8px;
+                    border:none;
+                    border-radius: 8px;
+                    
                 }
                 """
             )
@@ -172,7 +174,7 @@ class BudgetUI(QWidget):
                     color: #333;
                     padding: 5px 30px;
                     border-radius: 10px;
-                    border: 1px solid #d3d3d3;
+                    border: none;
                 }
                 """
             )
@@ -304,7 +306,7 @@ class BudgetUI(QWidget):
 
         # Input fields with labels
         fields = {
-            "Budget Name": QLineEdit(row.get('budgetName', '')),
+            # "Budget Name": QLineEdit(row.get('budgetName', '')),
             "Budget Amount": QLineEdit(str(row.get('budgetAmount', ''))),
             "Remainder": QLineEdit(str(row.get('remainder', ''))),
             "Start Date (YYYY-MM-DD)": QLineEdit(row.get('startDate', '')),
