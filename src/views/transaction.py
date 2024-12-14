@@ -32,7 +32,7 @@ class TransactionUI(QWidget):
             QPushButton {
                 padding: 10px;
                 font-size: 14px;    
-                background-color: #1CD43A;
+                background-color: #1CC43A;
                 border: none;
                 color: white;
                 
@@ -150,10 +150,6 @@ class TransactionUI(QWidget):
         logo_label = QLabel()
         logo_label.setFixedSize(65, 65)
         logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        if transaction['type'] == 'expense':
-            logo_label.setStyleSheet("background-color: #e80b67;")
-        else:
-            logo_label.setStyleSheet("background-color: #02b429;")
         category = transaction['category']
         logo_path = os.path.join(os.getcwd(), 'src', 'public', f'{category}.png')
         if os.path.exists(logo_path):

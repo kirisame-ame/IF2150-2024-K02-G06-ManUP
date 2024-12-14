@@ -200,10 +200,6 @@ class HomeUI(QWidget):
         logo_label = QLabel()
         logo_label.setFixedSize(65, 65)
         logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        if transaction['type'] == 'expense':
-            logo_label.setStyleSheet("background-color: #e80b67;")
-        else:
-            logo_label.setStyleSheet("background-color: #02b429;")
         category = transaction['category']
         logo_path = os.path.join(os.getcwd(), 'src', 'public', f'{category}.png')
         if os.path.exists(logo_path):
