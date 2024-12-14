@@ -351,6 +351,7 @@ class BudgetUI(QWidget):
 
 
 
+
     def save_edit(self, row, name_input, amount_input, remainder_input, start_date_input, end_date_input, dialog):
         try:
             updated_data = {
