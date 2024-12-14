@@ -180,7 +180,7 @@ class TransactionUI(QWidget):
         # Bagian Tengah: Amount dan Tombol
         center_layout = QVBoxLayout()
         # Amount
-        amount_label = QLabel(f"Rp {transaction['amount']}")
+        amount_label = QLabel(f"Rp {transaction['amount']:,.2f}")
         if transaction['type'] == 'expense':
             amount_label.setStyleSheet("color: #e80b67; font-weight: bold; font-size: 16px;")
         else:
