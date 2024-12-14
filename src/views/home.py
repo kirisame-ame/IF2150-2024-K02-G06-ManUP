@@ -141,7 +141,7 @@ class HomeUI(QWidget):
         logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         left_layout.addWidget(logo_label)
 
-        category_label = QLabel(f"{transaction['category']}")
+        category_label = QLabel(f"{transaction['category'].capitalize()}")
         if transaction['type'] == 'expense':
             category_label.setStyleSheet("font-size: 10px; font-weight: bold; margin-top: 2.5px; color: white; background-color: #e80b67;")
         else:
