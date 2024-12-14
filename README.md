@@ -5,8 +5,8 @@ ManUP
 Aplikasi ManUP adalah Aplikasi manajemen uang pribadi yang dirancang untuk membantu pengguna dalam mengelola keuangan pribadi mereka secara efektif dan efisien. Sistem ini memungkinkan pengguna untuk melacak pemasukan dan pengeluaran, menetapkan target tabungan, mengelola tagihan, dan mengatur anggaran. Kebutuhan utama pengguna mencakup kemampuan untuk melakukan operasi CRUD (Create, Read, Update, Delete) pada transaksi, target tabungan, tagihan, dan anggaran. Sistem ini dirancang untuk penggunaan pribadi dan lokal, dengan fokus pada fungsionalitas inti tanpa fitur otentikasi pengguna yang kompleks.
 
 Teknologi yang digunakan :
-Bahasa Pemrograman: Python
-Framework UI: PyQt6
+    Bahasa Pemrograman: Python
+    Framework UI: PyQt6
 
 Fitur yang dimilii aplikasi kami: 
 1. Homescreen:
