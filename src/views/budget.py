@@ -163,7 +163,7 @@ class BudgetUI(QWidget):
             card_layout.addWidget(title_label)
 
             amount_and_remainder_layout = QHBoxLayout()
-            budget_amount_label = QLabel(f"Amount: {row.get('budgetAmount', 'N/A')}")
+            budget_amount_label = QLabel(f"Amount: {row.get('budgetAmount', 'N/A'):,.2f}")
             budget_amount_label.setStyleSheet(
                 """
                 QLabel {
