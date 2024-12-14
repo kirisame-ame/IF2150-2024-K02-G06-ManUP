@@ -74,6 +74,7 @@ class TransactionUI(QWidget):
         self.sort_date_button.clicked.connect(self.sort_by_date)
         
         filter_layout.addWidget(self.sort_date_button)
+
         self.date_filter = QPushButton("Clear Filter")
         self.date_filter.clicked.connect(self.clear_filter)
         filter_layout.addWidget(self.date_filter)
@@ -102,8 +103,6 @@ class TransactionUI(QWidget):
 
     def clear_filter(self):
         self.load_transactions()
-        
-    
 
     def sort_by_date(self):
         date, ok = QInputDialog.getItem(self, 'Sort by Date', 'Select sorting order:', ['Ascending', 'Descending'], 0, False)
@@ -123,6 +122,7 @@ class TransactionUI(QWidget):
 
     def load_transactions(self):
         transactions = read_transaction()
+        transactions = transactions.sort_values('id', ascending=False)
         self.clear_transaction_cards()
         self.scroll_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
