@@ -2,7 +2,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
-import pandas as pd
+
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from controllers.transactionC import create_transaction
 from controllers.transactionC import getNewId
@@ -10,7 +10,6 @@ from PyQt6.QtWidgets import QComboBox
 from PyQt6.QtCore import pyqtSignal
 import re
 from PyQt6.QtWidgets import QMessageBox
-from controllers.transactionC import read_transaction
 class TransactionFormUI(QWidget):
     closed = pyqtSignal()
     def __init__(self, transaction_ui):
@@ -99,10 +98,6 @@ class TransactionFormUI(QWidget):
         category = self.category_input.currentText()
         
         data = {'id': id, 'amount': amount, 'date': date, 'type': type, 'category': category}
-        budget_data = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))
-        if (type == 'expense'):
-            budget_data.loc[budget_data['budgetName'] == category, 'budgetAmount'] -= amount
-            budget_data.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)
         create_transaction(data)
         self.hide()
         self.transaction_ui.load_transactions()

@@ -1,7 +1,6 @@
 import re
 import sys
 import os
-import csv
 sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea, QMessageBox, QInputDialog
@@ -55,30 +54,22 @@ class HomeUI(QWidget):
         remainder_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         remainder_label.setFixedHeight(self.height() // 10)
         left_frame.addWidget(remainder_label)
-
-        # Right frame for notifications and transactions
+        # Right frame for list of transaction cards
         right_frame = QVBoxLayout()
         split_layout.addLayout(right_frame)
-
-        # Notification Cards Layout
-        self.notification_cards_layout = QVBoxLayout()
-        right_frame.addLayout(self.notification_cards_layout)
 
         # Add four most recent transactions to the right frame
         self.recent_transactions_layout = QVBoxLayout()
         right_frame.addLayout(self.recent_transactions_layout)
-        self.recent_transactions_layout.setSpacing(0)  # Remove space between cards
 
         self.budget_ui.budget_updated.connect(self.update_pie_chart)
         self.transaction_ui.transaction_updated.connect(self.update_recent_transactions)
         self.update_pie_chart()
-        self.update_notifications()
         self.update_recent_transactions()
 
     def showEvent(self, event):
         super().showEvent(event)
         self.update_pie_chart()
-        self.update_notifications()
         self.update_recent_transactions()
 
     def update_pie_chart(self):
@@ -94,39 +85,6 @@ class HomeUI(QWidget):
                 if child.widget():
                     child.widget().deleteLater()
         layout.addWidget(canvas)
-
-    def update_notifications(self):
-        # Clear existing cards
-        for i in reversed(range(self.notification_cards_layout.count())):
-            self.notification_cards_layout.itemAt(i).widget().deleteLater()
-
-        # Load data from budget.csv
-        budget_file = os.path.join(os.getcwd(), 'src', 'models', 'budget.csv')
-        if os.path.exists(budget_file):
-            try:
-                with open(budget_file, 'r') as file:
-                    reader = csv.DictReader(file)
-
-                    # Check if file is empty
-                    if not reader.fieldnames:
-                        print("DEBUG: budget.csv is empty or has no headers.")
-                        return
-
-                    for row in reader:
-                        budget_name = row.get('budgetName', 'Unknown')
-                        try:
-                            budget_amount = float(row.get('budgetAmount', 0))
-                        except ValueError:
-                            print(f"DEBUG: Invalid budgetAmount value for {budget_name}: {row.get('budgetAmount')}")
-                            continue
-
-                        card = self.create_notification_card(budget_name, budget_amount)
-                        self.notification_cards_layout.addWidget(card)
-
-            except Exception as e:
-                print(f"DEBUG: Error reading budget.csv: {e}")
-        else:
-            print("DEBUG: budget.csv does not exist.")
 
     def update_recent_transactions(self):
         # Clear previous transaction cards
@@ -158,43 +116,16 @@ class HomeUI(QWidget):
 
     def reset_widget_after_the_transaction_updated(self):
         self.update_pie_chart()
-        self.update_notifications()
         self.update_recent_transactions()
 
     def reset_widget_after_the_budget_updated(self):
         self.update_pie_chart()
-        self.update_notifications()
         self.update_recent_transactions()
-
-    def create_notification_card(self, budget_name, budget_amount):
-        card = QWidget()
-        card_layout = QHBoxLayout(card)
-        card.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 10px; margin-bottom: 5px;")
-
-        # Budget Name
-        name_label = QLabel(budget_name)
-        name_label.setStyleSheet("font-size: 14px; font-weight: bold;")
-        card_layout.addWidget(name_label)
-
-        # Budget Amount
-        amount_label = QLabel(f"Rp {budget_amount:,.2f}")
-        if budget_amount == 0:
-            amount_label = QLabel("You've Ran Out of Budget!")
-            amount_label.setStyleSheet("color: red; font-weight: bold;")
-        elif budget_amount < 100:
-            amount_label = QLabel("You are running low on budget!")
-            amount_label.setStyleSheet("color: orange; font-weight: bold;")
-        else:
-            amount_label = QLabel("Your budget is still safe.")
-            amount_label.setStyleSheet("color: green; font-weight: bold;")
-        card_layout.addWidget(amount_label)
-
-        return card
 
     def create_transaction_card(self, transaction):
         card = QWidget()
         card_layout = QHBoxLayout(card)
-        card.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 2px; margin: 0;")  # Added margin: 0
+        card.setStyleSheet("border: 1px solid gray; border-radius: 5px; padding: 2px;")
 
         # Bagian Kiri: Logo
         logo_label = QLabel()

@@ -7,11 +7,9 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from PyQt6.QtCore import pyqtSignal
 from controllers.transactionC import update_transaction
 from controllers.homeC import get_four_most_recent_transaction
-from controllers.transactionC import read_transaction
-import pandas as pd
+
 class TransactionFormEditUI(QWidget):
     closed = pyqtSignal()
-    update_budget = pyqtSignal()
     def __init__(self, transaction_ui, id):
         super().__init__()
         self.transaction_ui = transaction_ui
@@ -112,23 +110,11 @@ class TransactionFormEditUI(QWidget):
             return
 
         id = self.id
-        transaction_data = read_transaction()
-        prey_type = transaction_data[transaction_data['id'] == id]['type'].values[0]
-        prev_amount = transaction_data[transaction_data['id'] == id]['amount'].values[0]
         amount = float(self.amount_input.text())
         date = self.date_input.text()
         type = self.type_input.currentText()
         category = self.category_input.currentText()
-        budget_data = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'))
-        if prey_type == 'income' and type == 'expense':
-            budget_data.loc[budget_data['budgetName'] == category, 'budgetAmount'] -= amount
-            budget_data.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)
-        elif prey_type == 'expense' and type == 'expense':
-            budget_data.loc[budget_data['budgetName'] == category, 'budgetAmount'] += (prev_amount - amount)
-            budget_data.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)
-        elif prey_type == 'expense' and type == 'income':
-            budget_data.loc[budget_data['budgetName'] == category, 'budgetAmount'] += prev_amount
-            budget_data.to_csv(os.path.join(os.getcwd(), 'src', 'models', 'budget.csv'), index=False)
+
         data = {'id': id, 'amount': amount, 'date': date, 'type': type, 'category': category}
         update_transaction(data)
         self.hide()
