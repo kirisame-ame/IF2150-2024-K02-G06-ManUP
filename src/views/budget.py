@@ -23,6 +23,7 @@ class BudgetUI(QWidget):
         self.setup_ui()
 
     def setup_ui(self):
+
         # Main layout
         main_layout = QVBoxLayout(self)
 
@@ -339,7 +340,7 @@ class BudgetUI(QWidget):
         save_button.clicked.connect(
             lambda: self.save_edit(
                 row,
-                fields["Budget Name"],
+                row.get('budgetName', ''),
                 fields["Budget Amount"],
                 fields["Remainder"],
                 fields["Start Date (YYYY-MM-DD)"],
@@ -358,7 +359,7 @@ class BudgetUI(QWidget):
         try:
             updated_data = {
                 'id': row['id'],
-                'budgetName': name_input.text(),
+                'budgetName': name_input,
                 'budgetAmount': float(amount_input.text()),
                 'remainder': float(remainder_input.text()),
                 'startDate': start_date_input.text(),
