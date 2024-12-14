@@ -28,9 +28,6 @@ class HomeController(QMainWindow):
         self.home_ui = HomeUI()
         self.budget_ui = BudgetUI()
         
-        # Initially show home UI
-        # self.current_ui = self.home_ui
-        # self.main_layout.addWidget(self.current_ui)
 
         # Connect buttons to methods
         self.connect_navbar(self.home_ui.navbar)

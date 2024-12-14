@@ -74,7 +74,6 @@ class TransactionUI(QWidget):
         self.sort_date_button.clicked.connect(self.sort_by_date)
         
         filter_layout.addWidget(self.sort_date_button)
-
         self.date_filter = QPushButton("Clear Filter")
         self.date_filter.clicked.connect(self.clear_filter)
         filter_layout.addWidget(self.date_filter)
@@ -103,6 +102,8 @@ class TransactionUI(QWidget):
 
     def clear_filter(self):
         self.load_transactions()
+        
+    
 
     def sort_by_date(self):
         date, ok = QInputDialog.getItem(self, 'Sort by Date', 'Select sorting order:', ['Ascending', 'Descending'], 0, False)
@@ -122,7 +123,6 @@ class TransactionUI(QWidget):
 
     def load_transactions(self):
         transactions = read_transaction()
-        transactions = transactions.sort_values('date', ascending=False)
         self.clear_transaction_cards()
         self.scroll_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
@@ -178,7 +178,7 @@ class TransactionUI(QWidget):
         if transaction['type'] == 'expense':
             amount_label.setStyleSheet("color: #D43A1C; font-weight: bold; font-size: 16px; border:none;")
         else:
-            amount_label.setStyleSheet("color: #1CD43A; font-weight: bold; font-size: 16px; border:none;")
+            amount_label.setStyleSheet("color: #02b429; font-weight: bold; font-size: 16px; border:none;")
 
         center_layout.addWidget(amount_label)
 
