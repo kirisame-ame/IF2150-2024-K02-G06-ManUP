@@ -122,7 +122,7 @@ class TransactionUI(QWidget):
 
     def load_transactions(self):
         transactions = read_transaction()
-        transactions = transactions.sort_values('id', ascending=False)
+        transactions = transactions.sort_values('date', ascending=False)
         self.clear_transaction_cards()
         self.scroll_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
