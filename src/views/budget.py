@@ -12,15 +12,19 @@ import matplotlib.pyplot as plt
 from views.components.navbar import Navbar
 from controllers.budgetC import deleteBudget, updateBudget
 
-from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtCore import pyqtSignal, QFileSystemWatcher
+
 class BudgetUI(QWidget):
     budget_updated = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.pie_chart = None
         self.scroll_area = None
         self.budget_layout = None  # Store the budget layout
+        self.file_watcher = QFileSystemWatcher()
         self.setup_ui()
+        self.setup_file_watcher()
 
     def setup_ui(self):
         # Main layout
@@ -53,6 +57,7 @@ class BudgetUI(QWidget):
 
         # Path to the CSV file
         csv_path = os.path.join(os.getcwd(), 'src', 'models', 'budget.csv')
+        self.csv_path = csv_path
 
         # Add pie chart
         self.pie_chart = self.create_pie_chart(csv_path)
@@ -82,6 +87,49 @@ class BudgetUI(QWidget):
             }
             """
         )
+
+    def setup_file_watcher(self):
+        """Setup the file watcher to monitor the CSV file for changes."""
+        if os.path.exists(self.csv_path):
+            self.file_watcher.addPath(self.csv_path)
+            self.file_watcher.fileChanged.connect(self.on_file_changed)
+        else:
+            print(f"CSV file not found at {self.csv_path}")
+
+    def on_file_changed(self, path):
+        """Handle the file changed event."""
+        if path == self.csv_path:
+            print("CSV file has changed. Refreshing UI...")
+            self.file_watcher.blockSignals(True)  # Prevent duplicate triggers
+            try:
+                if os.path.exists(path):
+                    self.refresh_ui()
+                else:
+                    print("File has been deleted. Removing path from watcher.")
+                    self.file_watcher.removePath(path)
+            finally:
+                self.file_watcher.blockSignals(False)  # Re-enable signals
+
+    def refresh_ui(self):
+        """Refresh the UI components when the file changes."""
+        # Remove the previous pie chart if it exists
+        if self.pie_chart is not None:
+            self.budget_layout.removeWidget(self.pie_chart)
+            self.pie_chart.deleteLater()
+            self.pie_chart = None
+
+        # Remove the previous scrollable cards if they exist
+        if self.scroll_area is not None:
+            self.budget_layout.removeWidget(self.scroll_area)
+            self.scroll_area.deleteLater()
+            self.scroll_area = None
+
+        # Recreate and add updated pie chart and scroll area
+        self.pie_chart = self.create_pie_chart(self.csv_path)
+        self.budget_layout.addWidget(self.pie_chart, alignment=Qt.AlignmentFlag.AlignCenter)
+
+        self.scroll_area = self.create_scrollable_cards(self.csv_path)
+        self.budget_layout.addWidget(self.scroll_area)
 
     def create_pie_chart(self, csv_file):
         # Read data from CSV
@@ -123,13 +171,11 @@ class BudgetUI(QWidget):
 
         return canvas
 
-
     def create_scrollable_cards(self, csv_file):
         data = pd.read_csv(csv_file)
 
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
-        scroll_area.setStyleSheet("background-color: transparent;")
         container = QWidget()
         container_layout = QVBoxLayout(container)
 
@@ -140,8 +186,8 @@ class BudgetUI(QWidget):
             card_layout.setSpacing(10)
             card.setStyleSheet(
                 """
-                background-color: #ffffff;
-                border-bottom: 1px solid #d3d3d3;
+                border-radius: 10px;
+                border: 2px solid #d3d3d3;
                 """
             )
 
@@ -158,7 +204,6 @@ class BudgetUI(QWidget):
                     padding: 10px;
                     border:none;
                     border-radius: 8px;
-                    
                 }
                 """
             )
@@ -172,20 +217,6 @@ class BudgetUI(QWidget):
                 QLabel {
                     font-size: 20px;
                     font-weight: bold;
-                    color: #333;
-                    padding: 5px 30px;
-                    border-radius: 10px;
-                    border: none;
-                }
-                """
-            )
-            amount_and_remainder_layout.addWidget(budget_amount_label)
-
-            remainder_label = QLabel(f"Remainder: {row.get('remainder', 'N/A')}")
-            remainder_label.setStyleSheet(
-                """
-                QLabel {
-                    font-size: 20px;
                     color: white;
                     background-color: #f44336;
                     padding: 5px 30px;
@@ -258,26 +289,6 @@ class BudgetUI(QWidget):
             edit_button.clicked.connect(lambda _, r=row: self.show_edit_popup(r))
             button_layout.addWidget(edit_button)
 
-            # delete_button = QPushButton("Delete")
-            # delete_button.setStyleSheet(
-            #     """
-            #     QPushButton {
-            #         background-color: #f44336;
-            #         color: white;
-            #         border: none;
-            #         padding: 10px 20px;
-            #         border-radius: 4px;
-            #         font-size: 20px;
-            #         font-weight: bold;
-            #     }
-            #     QPushButton:hover {
-            #         background-color: #d32f2f;
-            #     }
-            #     """
-            # )
-            # delete_button.clicked.connect(lambda _, r=row: self.confirm_delete(r))
-            # button_layout.addWidget(delete_button)
-
             card_layout.addLayout(button_layout)
             container_layout.addWidget(card)
 
@@ -324,18 +335,15 @@ class BudgetUI(QWidget):
 
         # Input fields with labels
         fields = {
-            # "Budget Name": QLineEdit(row.get('budgetName', '')),
             "Budget Amount": QLineEdit(str(row.get('budgetAmount', ''))),
             "Remainder": QLineEdit(str(row.get('remainder', ''))),
             "Start Date (YYYY-MM-DD)": QLineEdit(row.get('startDate', '')),
-            "End Date (YYYY-MM-DD)": QLineEdit(row.get('endDate', '')),
+            "End Date (YYYY-MM-DD)": QLineEdit(row.get('endDate', ''))
         }
 
-        # Add labeled input fields to the dialog
-        for label_text, input_field in fields.items():
-            label = QLabel(label_text)
-            dialog_layout.addWidget(label)
-            dialog_layout.addWidget(input_field)
+        for label, field in fields.items():
+            dialog_layout.addWidget(QLabel(label))
+            dialog_layout.addWidget(field)
 
         # Save button
         save_button = QPushButton("Save")
@@ -368,7 +376,7 @@ class BudgetUI(QWidget):
         dialog_layout.addWidget(save_button)
 
         dialog.exec()
-        
+
     def save_edit(self, row, name_input, amount_input, remainder_input, start_date_input, end_date_input, dialog):
         try:
             updated_data = {
@@ -385,4 +393,3 @@ class BudgetUI(QWidget):
             dialog.close()
         except ValueError:
             QMessageBox.warning(self, "Invalid Input", "Please ensure all fields are correctly filled.")
-
