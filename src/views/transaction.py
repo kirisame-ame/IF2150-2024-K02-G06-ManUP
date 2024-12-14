@@ -70,13 +70,13 @@ class TransactionUI(QWidget):
         self.category_filter.clicked.connect(self.filter_by_category)
         filter_layout.addWidget(self.category_filter)
 
-        self.date_filter = QPushButton("Filter by Date")
-        self.date_filter.clicked.connect(self.filter_by_date)
-        filter_layout.addWidget(self.date_filter)
-
         self.sort_date_button = QPushButton("Sort by Date")
         self.sort_date_button.clicked.connect(self.sort_by_date)
         filter_layout.addWidget(self.sort_date_button)
+        
+        self.date_filter = QPushButton("Clear Filter")
+        self.date_filter.clicked.connect(self.clear_filter)
+        filter_layout.addWidget(self.date_filter)
 
         main_layout.addLayout(filter_layout)
 
@@ -100,16 +100,8 @@ class TransactionUI(QWidget):
             transactions = get_transaction_by_category(category)
             self.display_filtered_transactions(transactions)
 
-    def filter_by_date(self):
-        date, ok = QInputDialog.getText(self, 'Filter by Date', 'Enter transaction date (YYYY-MM-DD):')
-        if ok:
-            transactions = get_transaction_by_date(date)
-            self.display_filtered_transactions(transactions)
-
-        # Set the stylesheet for QInputDialog to make the text color black
-        input_dialog = self.findChild(QInputDialog)
-        if input_dialog:
-            input_dialog.setStyleSheet("QLabel { color: black; } QLineEdit { color: black; }")
+    def clear_filter(self):
+        self.load_transactions()
 
     def sort_by_date(self):
         date, ok = QInputDialog.getItem(self, 'Sort by Date', 'Select sorting order:', ['Ascending', 'Descending'], 0, False)
@@ -129,6 +121,7 @@ class TransactionUI(QWidget):
 
     def load_transactions(self):
         transactions = read_transaction()
+        transactions = transactions.sort_values('id', ascending=False)
         self.clear_transaction_cards()
         self.scroll_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 

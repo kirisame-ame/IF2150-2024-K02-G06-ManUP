@@ -1,3 +1,4 @@
+import re
 import sys
 import os
 sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
@@ -47,7 +48,12 @@ class HomeUI(QWidget):
         self.pie_chart_label = QLabel()
         self.pie_chart_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         left_frame.addWidget(self.pie_chart_label)
-
+        remainder_ = remainder()
+        remainder_label = QLabel(f"Remainder: Rp {remainder_:,.2f}")
+        remainder_label.setStyleSheet("font-size: 12px; font-weight: bold; color: white; background-color: #02b429; padding: 2px; border-radius: 5px;")
+        remainder_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        remainder_label.setFixedHeight(self.height() // 10)
+        left_frame.addWidget(remainder_label)
         # Right frame for list of transaction cards
         right_frame = QVBoxLayout()
         split_layout.addLayout(right_frame)
