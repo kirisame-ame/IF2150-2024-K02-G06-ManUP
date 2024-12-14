@@ -61,6 +61,7 @@ class HomeController(QMainWindow):
 
 # Run the application
 if __name__ == "__main__":
+    sys.argv+= ['-platform', 'windows:darkmode=1']
     app = QApplication(sys.argv)
     app.setStyleSheet("""
         QMainWindow{
