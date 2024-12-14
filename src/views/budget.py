@@ -12,8 +12,9 @@ import matplotlib.pyplot as plt
 from views.components.navbar import Navbar
 from controllers.budgetC import deleteBudget, updateBudget
 
-
+from PyQt6.QtCore import pyqtSignal
 class BudgetUI(QWidget):
+    budget_updated = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.pie_chart = None
@@ -350,6 +351,7 @@ class BudgetUI(QWidget):
 
 
 
+
     def save_edit(self, row, name_input, amount_input, remainder_input, start_date_input, end_date_input, dialog):
         try:
             updated_data = {
@@ -362,6 +364,7 @@ class BudgetUI(QWidget):
             }
             updateBudget(updated_data)  # Update the budget data
             self.refresh_ui()  # Refresh the UI to reflect changes
+            self.budget_updated.emit()  # Emit signal to update the budget in the main window
             dialog.close()
         except ValueError:
             QMessageBox.warning(self, "Invalid Input", "Please ensure all fields are correctly filled.")

@@ -6,10 +6,10 @@ import re
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QComboBox, QMessageBox
 from PyQt6.QtCore import pyqtSignal
 from controllers.transactionC import update_transaction
+from controllers.homeC import get_four_most_recent_transaction
 
 class TransactionFormEditUI(QWidget):
     closed = pyqtSignal()
-
     def __init__(self, transaction_ui, id):
         super().__init__()
         self.transaction_ui = transaction_ui
@@ -80,7 +80,6 @@ class TransactionFormEditUI(QWidget):
         self.submit_button = QPushButton("Submit")
         self.submit_button.clicked.connect(self.form_update_transaction)
         input_layout.addWidget(self.submit_button)
-
         self.setLayout(input_layout)
 
     def remove_select_type(self, text):
