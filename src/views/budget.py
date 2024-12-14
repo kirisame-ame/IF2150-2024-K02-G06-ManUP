@@ -87,7 +87,7 @@ class BudgetUI(QWidget):
         # Read data from CSV
         data = pd.read_csv(csv_file)
         labels = data['budgetName']
-        amounts = data['budgetAmount']
+        amounts = data['budgetAmount'].clip(lower=0)
 
         # Create a matplotlib figure and axis with transparent background
         figure, ax = plt.subplots(figsize=(5, 5), tight_layout=True)
@@ -166,6 +166,7 @@ class BudgetUI(QWidget):
 
             amount_and_remainder_layout = QHBoxLayout()
             budget_amount_label = QLabel(f"Amount: {row.get('budgetAmount', 'N/A'):,.2f}")
+            budget_amount_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
             budget_amount_label.setStyleSheet(
                 """
                 QLabel {
@@ -193,9 +194,26 @@ class BudgetUI(QWidget):
                 }
                 """
             )
-            amount_and_remainder_layout.addWidget(remainder_label)
 
-            card_layout.addLayout(amount_and_remainder_layout)
+            card_layout.addWidget(budget_amount_label)
+            # amount_and_remainder_layout.addWidget(budget_amount_label)
+
+            # remainder_label = QLabel(f"Remainder: {row.get('remainder', 'N/A')}")
+            # remainder_label.setStyleSheet(
+            #     """
+            #     QLabel {
+            #         font-size: 20px;
+            #         color: white;
+            #         background-color: #f44336;
+            #         padding: 5px 30px;
+            #         border-radius: 10px;
+            #         border: 1px solid #d3d3d3;
+            #     }
+            #     """
+            # )
+            # amount_and_remainder_layout.addWidget(remainder_label)
+
+            # card_layout.addLayout(amount_and_remainder_layout)
 
             start_date = row.get('startDate', 'N/A')
             end_date = row.get('endDate', 'N/A')
@@ -339,7 +357,7 @@ class BudgetUI(QWidget):
         save_button.clicked.connect(
             lambda: self.save_edit(
                 row,
-                fields["Budget Name"],
+                row.get('budgetName', ''),
                 fields["Budget Amount"],
                 fields["Remainder"],
                 fields["Start Date (YYYY-MM-DD)"],
@@ -350,55 +368,21 @@ class BudgetUI(QWidget):
         dialog_layout.addWidget(save_button)
 
         dialog.exec()
-
-
-
-
+        
     def save_edit(self, row, name_input, amount_input, remainder_input, start_date_input, end_date_input, dialog):
         try:
             updated_data = {
                 'id': row['id'],
-                'budgetName': name_input.text(),
+                'budgetName': name_input,
                 'budgetAmount': float(amount_input.text()),
                 'remainder': float(remainder_input.text()),
                 'startDate': start_date_input.text(),
                 'endDate': end_date_input.text()
             }
             updateBudget(updated_data)  # Update the budget data
+            self.budget_updated.emit() # Emit signal to refresh the UI
             self.refresh_ui()  # Refresh the UI to reflect changes
-            self.budget_updated.emit()  # Emit signal to update the budget in the main window
             dialog.close()
         except ValueError:
             QMessageBox.warning(self, "Invalid Input", "Please ensure all fields are correctly filled.")
 
-
-
-    def confirm_delete(self, row):
-        reply = QMessageBox.question(
-            self, "Confirm Delete", f"Are you sure you want to delete {row['budgetName'].capitalize()}?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-        )
-        if reply == QMessageBox.StandardButton.Yes:
-            deleteBudget(row['id'])
-            self.refresh_ui()
-
-    def refresh_ui(self):
-        csv_path = os.path.join(os.getcwd(), 'src', 'models', 'budget.csv')
-
-        # Replace the pie chart
-        if self.pie_chart:
-            self.budget_layout.removeWidget(self.pie_chart)
-            self.pie_chart.deleteLater()
-            self.pie_chart = None
-
-        self.pie_chart = self.create_pie_chart(csv_path)
-        self.budget_layout.addWidget(self.pie_chart, alignment=Qt.AlignmentFlag.AlignCenter)
-
-        # Replace the scroll area
-        if self.scroll_area:
-            self.budget_layout.removeWidget(self.scroll_area)
-            self.scroll_area.deleteLater()
-            self.scroll_area = None
-
-        self.scroll_area = self.create_scrollable_cards(csv_path)
-        self.budget_layout.addWidget(self.scroll_area)
