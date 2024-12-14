@@ -45,7 +45,7 @@ def pie_chart_for_category_in_type_expense():
     # Create the pie chart
     wedges, texts, autotexts = ax.pie(
         budget_amount,
-        labels=[label if amount > 0 else '' for label, amount in zip(budget_amount.index, budget_amount)],
+        labels=[label.capitalize() if amount > 0 else '' for label, amount in zip(budget_amount.index, budget_amount)],
         autopct=autopct_func,
         startangle=140,
         colors=colors,

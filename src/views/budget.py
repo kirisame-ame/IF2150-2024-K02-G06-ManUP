@@ -104,7 +104,7 @@ class BudgetUI(QWidget):
         # Create the pie chart
         wedges, texts, autotexts = ax.pie(
             amounts,
-            labels=[label if amount > 0 else '' for label, amount in zip(labels, amounts)],
+            labels=[label.capitalize() if amount > 0 else '' for label, amount in zip(labels, amounts)],
             autopct=autopct_func,
             startangle=140,
             colors=colors,
@@ -145,7 +145,7 @@ class BudgetUI(QWidget):
             )
 
             budget_name = row.get('budgetName', '')
-            title_label = QLabel(budget_name)
+            title_label = QLabel(budget_name.capitalize())
             title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
             title_label.setStyleSheet(
                 """
@@ -373,7 +373,7 @@ class BudgetUI(QWidget):
 
     def confirm_delete(self, row):
         reply = QMessageBox.question(
-            self, "Confirm Delete", f"Are you sure you want to delete {row['budgetName']}?",
+            self, "Confirm Delete", f"Are you sure you want to delete {row['budgetName'].capitalize()}?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if reply == QMessageBox.StandardButton.Yes:
