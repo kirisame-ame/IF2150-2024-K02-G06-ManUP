@@ -303,7 +303,7 @@ class BudgetUI(QWidget):
 
         # Input fields with labels
         fields = {
-            "Budget Name": QLineEdit(row.get('budgetName', '')),
+            # "Budget Name": QLineEdit(row.get('budgetName', '')),
             "Budget Amount": QLineEdit(str(row.get('budgetAmount', ''))),
             "Remainder": QLineEdit(str(row.get('remainder', ''))),
             "Start Date (YYYY-MM-DD)": QLineEdit(row.get('startDate', '')),
