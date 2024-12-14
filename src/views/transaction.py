@@ -8,8 +8,10 @@ from PyQt6.QtCore import Qt
 from controllers.transactionC import read_transaction, delete_transaction, get_transaction_by_type, get_transaction_by_category, get_transaction_by_date, sort_transaction_by_date_asc, sort_transaction_by_date_desc
 from PyQt6.QtCore import pyqtSignal
 from views.components.navbar import Navbar
+from views.budget import BudgetUI
 class TransactionUI(QWidget):
     transaction_updated = pyqtSignal()
+    refresh_budget = pyqtSignal()
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setStyleSheet("""
@@ -41,7 +43,10 @@ class TransactionUI(QWidget):
         """)
         self.setup_ui()
         self.load_transactions()
+        self.budget_ui = BudgetUI()
         
+                # Hubungkan sinyal budget_updated ke refresh method
+        self.budget_ui.budget_updated.connect(self.refresh_budget_view)
 
     def setup_ui(self):
         main_layout = QVBoxLayout(self)
@@ -121,7 +126,7 @@ class TransactionUI(QWidget):
 
     def load_transactions(self):
         transactions = read_transaction()
-        transactions = transactions.sort_values('id', ascending=False)
+        transactions = transactions.sort_values('date', ascending=False)
         self.clear_transaction_cards()
         self.scroll_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
@@ -224,6 +229,8 @@ class TransactionUI(QWidget):
         self.edit_form.show()
         self.edit_form.closed.connect(self.load_transactions)
         self.transaction_updated.emit()
+        self.budget_ui.refresh_ui()
+
 
     def open_create_form(self):
         from views.create_transaction import TransactionFormUI
@@ -231,7 +238,10 @@ class TransactionUI(QWidget):
         self.create_form.show()
         self.create_form.closed.connect(self.load_transactions)
         self.transaction_updated.emit()
-        
+        self.budget_ui.refresh_ui()
+    def refresh_budget_view(self):
+        # Misalnya, panggil method untuk memuat ulang data budget
+        self.budget_ui.refresh_ui()
 # def metodo(self):
 #     methods = ["Watershed", "Hough Circle"]
 #     input_dialog = QInputDialog(self)
