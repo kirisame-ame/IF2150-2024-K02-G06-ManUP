@@ -24,15 +24,15 @@ class TransactionUI(QWidget):
                 padding: 8px;
                 font-size: 14px;
                 border: 1px solid #ccc;
-                border-radius: 4px;
+                border-radius: 4px; 
             }
             QPushButton {
                 padding: 10px;
-                font-size: 14px;
-                background-color: #999969;
-                color: white;
+                font-size: 14px;    
+                background-color: #1CD43A;
                 border: none;
-                border-radius: 4px;
+                color: white;
+                
             }
             QPushButton:hover {
                 background-color: #45a049;
@@ -173,9 +173,9 @@ class TransactionUI(QWidget):
         # Amount
         amount_label = QLabel(f"Rp {transaction['amount']}")
         if transaction['type'] == 'expense':
-            amount_label.setStyleSheet("color: red; font-weight: bold; font-size: 16px;")
+            amount_label.setStyleSheet("color: #D43A1C; font-weight: bold; font-size: 16px; border:none;")
         else:
-            amount_label.setStyleSheet("color: green; font-weight: bold; font-size: 16px;")
+            amount_label.setStyleSheet("color: #1CD43A; font-weight: bold; font-size: 16px; border:none;")
         center_layout.addWidget(amount_label)
 
         # Tombol Delete dan Edit
@@ -192,7 +192,7 @@ class TransactionUI(QWidget):
 
         # Bagian Kanan: Date
         date_label = QLabel(f"Date: {transaction['date']}")
-        date_label.setStyleSheet("font-size: 30px; color: white; background-color: gray; padding: 5px; border-radius: 5px;")
+        date_label.setStyleSheet("font-size: 30px; color: #0f0f0f; background-color: #f0f0f0; padding: 5px;border:none;")
         date_label.setAlignment(Qt.AlignmentFlag.AlignVCenter)
         card_layout.addWidget(date_label)
 
