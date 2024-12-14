@@ -11,11 +11,9 @@ from views.budget import BudgetUI
 
 class HomeController(QMainWindow):
     def __init__(self):
-        QMainWindow.__init__(self)
+        super().__init__()
         self.setWindowTitle("ManUP Budgeting App")
-        self.start()
-    
-    def start(self):
+        
         # Create a central widget to hold other widgets
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
@@ -28,6 +26,9 @@ class HomeController(QMainWindow):
         self.home_ui = HomeUI()
         self.budget_ui = BudgetUI()
         
+        # Initially show home UI
+        self.current_ui = self.home_ui
+        self.main_layout.addWidget(self.current_ui)
 
         # Connect buttons to methods
         self.connect_navbar(self.home_ui.navbar)
@@ -49,10 +50,9 @@ class HomeController(QMainWindow):
         self._switch_ui(self.budget_ui)
 
     def _switch_ui(self, new_ui):
-        if hasattr(self, 'current_ui'):
         # Remove the current UI
-            self.main_layout.removeWidget(self.current_ui)
-            self.current_ui.hide()
+        self.main_layout.removeWidget(self.current_ui)
+        self.current_ui.hide()
         
         # Add the new UI
         self.current_ui = new_ui
@@ -69,6 +69,5 @@ if __name__ == "__main__":
         }
        """)
     controller = HomeController()
-    controller._switch_ui(controller.home_ui)
     controller.showMaximized()
     sys.exit(app.exec())
