@@ -84,14 +84,6 @@
         "documentation": {}
     },
     {
-        "label": "read_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
         "label": "delete_transaction",
         "importPath": "controllers.transactionC",
         "description": "controllers.transactionC",
@@ -157,14 +149,6 @@
     },
     {
         "label": "update_transaction",
-        "importPath": "controllers.transactionC",
-        "description": "controllers.transactionC",
-        "isExtraImport": true,
-        "detail": "controllers.transactionC",
-        "documentation": {}
-    },
-    {
-        "label": "read_transaction",
         "importPath": "controllers.transactionC",
         "description": "controllers.transactionC",
         "isExtraImport": true,
@@ -853,14 +837,6 @@
         "documentation": {}
     },
     {
-        "label": "BudgetUI",
-        "importPath": "views.budget",
-        "description": "views.budget",
-        "isExtraImport": true,
-        "detail": "views.budget",
-        "documentation": {}
-    },
-    {
         "label": "TransactionFormUI",
         "importPath": "views.create_transaction",
         "description": "views.create_transaction",
@@ -1202,7 +1178,7 @@
         "kind": 6,
         "importPath": "src.views.transaction",
         "description": "src.views.transaction",
-        "peekOfCode": "class TransactionUI(QWidget):\n    transaction_updated = pyqtSignal()\n    refresh_budget = pyqtSignal()\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.setStyleSheet(\"\"\"\n            QWidget {\n                background-color: white;\n                font-family: Arial, sans-serif;\n            }",
+        "peekOfCode": "class TransactionUI(QWidget):\n    transaction_updated = pyqtSignal()\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.setStyleSheet(\"\"\"\n            QWidget {\n                background-color: white;\n                font-family: Arial, sans-serif;\n            }\n            QLabel {",
         "detail": "src.views.transaction",
         "documentation": {}
     },
@@ -1211,7 +1187,7 @@
         "kind": 6,
         "importPath": "src.views.update_transaction",
         "description": "src.views.update_transaction",
-        "peekOfCode": "class TransactionFormEditUI(QWidget):\n    closed = pyqtSignal()\n    update_budget = pyqtSignal()\n    def __init__(self, transaction_ui, id):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.id = id\n        self.setup_ui()\n    def setup_ui(self):\n        self.setWindowTitle(\"Edit Transaction\")",
+        "peekOfCode": "class TransactionFormEditUI(QWidget):\n    closed = pyqtSignal()\n    def __init__(self, transaction_ui, id):\n        super().__init__()\n        self.transaction_ui = transaction_ui\n        self.id = id\n        self.setup_ui()\n    def setup_ui(self):\n        self.setWindowTitle(\"Edit Transaction\")\n        self.setStyleSheet(\"\"\"",
         "detail": "src.views.update_transaction",
         "documentation": {}
     },
