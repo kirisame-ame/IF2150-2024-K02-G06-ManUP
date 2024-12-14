@@ -191,8 +191,28 @@ class TransactionUI(QWidget):
         # Tombol Delete dan Edit
         button_layout = QHBoxLayout()
         delete_button = QPushButton("Delete")
+        delete_button.setStyleSheet("""
+                                    QPushButton{
+                                        background-color: #FF0000; 
+                                        border:none; 
+                                        color: white;
+                                    }
+                                    QPushButton:hover{
+                                        background-color: #D43A1C;
+                                    }
+                                    """)
         delete_button.clicked.connect(lambda: self.confirm_delete_transaction(transaction['id']))
         edit_button = QPushButton("Edit")
+        edit_button.setStyleSheet("""
+                                  QPushButton{
+                                    background-color: #0090FF;
+                                    border:none;
+                                    color: white;
+                                  }
+                                  QPushButton:hover{
+                                    background-color: #0073e6;
+                                  }
+                                  """)
         edit_button.clicked.connect(lambda: self.edit_transaction(transaction['id']))
         button_layout.addWidget(delete_button)
         button_layout.addWidget(edit_button)
