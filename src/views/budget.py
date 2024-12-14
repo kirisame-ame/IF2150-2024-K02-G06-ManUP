@@ -135,7 +135,7 @@ class BudgetUI(QWidget):
         # Read data from CSV
         data = pd.read_csv(csv_file)
         labels = data['budgetName']
-        amounts = data['budgetAmount']
+        amounts = data['budgetAmount'].clip(lower=0)
 
         # Create a matplotlib figure and axis with transparent background
         figure, ax = plt.subplots(figsize=(5, 5), tight_layout=True)
