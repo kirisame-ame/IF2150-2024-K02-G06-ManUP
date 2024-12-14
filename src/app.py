@@ -69,6 +69,5 @@ if __name__ == "__main__":
         }
        """)
     controller = HomeController()
-    controller.resize(800, 600)
-    controller.show()
+    controller.showMaximized()
     sys.exit(app.exec())
