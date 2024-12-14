@@ -8,7 +8,7 @@ from controllers.budgetC import getBudgetAllocations
 from controllers.transactionC import read_transaction
 def get_four_most_recent_transaction():
     data = read_transaction()
-    data = data.sort_values('id', ascending=False).head(4)
+    data = data.sort_values('date', ascending=False).head(4)
     return data.to_dict(orient='records')
 
 

@@ -38,7 +38,7 @@ class HomeUI(QWidget):
         main_layout.addWidget(self.navbar)
 
         split_layout = QHBoxLayout()
-        main_layout.addLayout(split_layout)
+        main_layout.addLayout(split_layout,stretch=1)
 
         # Left frame for pie chart
         left_frame = QVBoxLayout()
