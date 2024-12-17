@@ -68,6 +68,10 @@ def sort_saving_by_targetDate() -> pd.DataFrame:
     savingDF = savingDF.sort_values('date')
     return savingDF
 
+def getNewIdS():
+    saving = pd.read_csv(os.path.join(os.getcwd(), 'src', 'models', 'saving.csv'))
+    return saving['id'].max() + 1
+
 # print(getTargetAmount(1))
 # print(getCurrentAmount(1))
 # print(getStartDate(1))
