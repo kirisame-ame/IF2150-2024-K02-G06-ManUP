@@ -1,16 +1,19 @@
 import sys
 import os
 import pandas as pd
+sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 from PyQt6.QtWidgets import (
     QApplication, QVBoxLayout, QHBoxLayout, QScrollArea, QWidget, QLabel,
     QPushButton, QDialog, QLineEdit, QMessageBox, QFrame, QSpacerItem, QSizePolicy,
-    QSplitter
+    QSplitter, QGraphicsDropShadowEffect, QProgressBar, 
 )
+from PyQt6.QtGui import QFont, QPixmap, QColor
 from PyQt6.QtCore import Qt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
 from views.components.navbar import Navbar
 from controllers.budgetC import deleteBudget, updateBudget
+from controllers.savingC import updateCurrentAmount, delete_saving, create_saving, read_savings, getTargetAmount, getCurrentAmount, getTargetDate, getStartDate
 
 from PyQt6.QtCore import pyqtSignal, QFileSystemWatcher
 
@@ -25,6 +28,7 @@ class BudgetUI(QWidget):
         self.file_watcher = QFileSystemWatcher()
         self.setup_ui()
         self.setup_file_watcher()
+        self.load_savings()
 
     def setup_ui(self):
 
@@ -40,16 +44,60 @@ class BudgetUI(QWidget):
 
         # Savings section
         savings_section = QFrame()
-        savings_layout = QVBoxLayout(savings_section)
-        savings_label = QLabel("Savings")
-        savings_label.setStyleSheet("font-size: 18px; font-weight: bold; text-align: center;")
-        savings_amount = QLabel("$5000")  # Example value
-        savings_amount.setStyleSheet("font-size: 24px; color: green; text-align: center;")
-        savings_layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
-        savings_layout.addWidget(savings_label, alignment=Qt.AlignmentFlag.AlignCenter)
-        savings_layout.addWidget(savings_amount, alignment=Qt.AlignmentFlag.AlignCenter)
-        savings_layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
+        self.savings_layout = QVBoxLayout(savings_section)
         splitter.addWidget(savings_section)
+
+        title_layout = QHBoxLayout()
+        title_layout.setSpacing(0)
+        title_layout.setContentsMargins(0, 0, 0, 0)
+        savings_label = QLabel("SAVINGS")
+        savings_label.setStyleSheet("""
+            color: #19191c;
+            background-color: transparent; 
+            padding-top: 5px;
+            padding-right: 5px;
+            text-align:
+             center;
+            """)
+        font = QFont()
+        font.setFamily("Helvetica")  # Menggunakan font Arial
+        font.setPointSize(24)    # Ukuran font 24pt
+        font.setWeight(QFont.Weight.Bold)  # Menggunakan font bold
+        font.setItalic(False)
+        font.setLetterSpacing(QFont.SpacingType.PercentageSpacing, 110)
+
+        create_button = QPushButton("+")
+        create_button.clicked.connect(lambda: self.create_saving_form())
+        create_button.setStyleSheet("""
+            QPushButton {
+                border: none;
+                background-color: #29bd1e;  /* Warna oranye */
+                color: white;
+                border-radius: 9px;       /* Membuat tombol melengkung */
+            }
+            QPushButton:hover {
+                background-color: #FF4500; /* Warna saat hover */
+            }
+        """)
+        savings_label.setFont(font)
+        savings_label.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+
+        title_layout.addWidget(savings_label)
+        title_layout.addWidget(create_button)
+        title_layout.setAlignment(Qt.AlignmentFlag.AlignJustify)
+        title_layout.setContentsMargins(0, 0, 0, 0)
+        self.savings_layout.addLayout(title_layout)
+        
+        self.scroll_saving = QScrollArea()
+        self.scroll_saving.setWidgetResizable(True)
+        self.container = QWidget()
+        self.containerSaving_layout = QVBoxLayout(self.container)
+        self.containerSaving_layout.setSpacing(15)  # Tambahkan jarak antar elemen card
+        self.containerSaving_layout.setContentsMargins(15, 15, 15, 15)  # Tambahkan margin untuk container
+        
+        self.scroll_saving.setWidget(self.container)
+        self.savings_layout.addWidget(self.scroll_saving)
+
 
         # Budget section
         budget_section = QFrame()
@@ -394,3 +442,243 @@ class BudgetUI(QWidget):
             dialog.close()
         except ValueError:
             QMessageBox.warning(self, "Invalid Input", "Please ensure all fields are correctly filled.")
+        
+    def load_savings(self):
+        savings = read_savings()
+        self.clear_savings_cards()
+
+        for s in savings.to_dict('records'):
+            saving_widget = self.create_saving_card(self.containerSaving_layout, s)
+            self.containerSaving_layout.addWidget(saving_widget, alignment=Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+
+    def clear_savings_cards(self):
+        while self.containerSaving_layout.count() > 0:
+            child = self.containerSaving_layout.takeAt(0)
+            if child.widget():
+                child.widget().deleteLater()
+
+    def create_saving_card(self, container_layout, saving) -> QWidget:
+        saving_id = saving['id']
+        saving_target_date = getTargetDate(saving_id)
+        saving_start_date = getStartDate(saving_id)
+        saving_current_amount = getCurrentAmount(saving_id)
+        saving_target_amount = getTargetAmount(saving_id)
+
+        card = QWidget(self)
+        card_layout = QVBoxLayout(card)
+        card.setStyleSheet("""
+            border: 0.5px solid #58595c;
+            border-radius: 30px;
+            padding: 1px;
+            background-color: #FFFFFF;
+        """)
+
+        card.setFixedSize(600, 150) 
+        shadow_effect = QGraphicsDropShadowEffect()
+        shadow_effect.setBlurRadius(15)
+        shadow_effect.setColor(QColor(0, 0, 0, 60))  # Black with 60% transparency
+        shadow_effect.setOffset(3, 5)
+        card.setGraphicsEffect(shadow_effect)
+
+        # Layout utama untuk widget card
+        card_layout.setContentsMargins(30, 20, 30, 10)
+
+        # Header Layout untuk judul dan target amount
+        header_layout = QHBoxLayout()
+        header_layout.setSpacing(0)
+        header_layout.setContentsMargins(0, 0, 0, 0)
+
+        title_label = QLabel("Target Amount")
+        title_label.setStyleSheet("""
+            color: #404247;
+            background-color: transparent;
+            border: none;
+            padding: 0px 0px 5px 0px; 
+            text-align: left;
+            """)
+        title_label.setFont(QFont("Roboto", 18))
+        header_layout.addWidget(title_label)
+
+        self.amount_label = QLabel(f"{saving_target_amount:,.0f}")
+        self.amount_label.setFont(QFont("Roboto", 18, QFont.Weight.Bold))
+        self.amount_label.setStyleSheet("""
+            color: #404247; 
+            border: none;
+            background-color: transparent; 
+            padding: 0px 0px 0px 0px;
+            text-align: left;
+            """)  # Warna merah
+        header_layout.addWidget(self.amount_label)
+        header_layout.addStretch(0) 
+
+        add_button = QPushButton("Add")
+        add_button.clicked.connect(lambda: self.add_saving(saving_id))
+        add_button.setStyleSheet("""
+            QPushButton {
+                border: none;
+                background-color: #29bd1e;  /* Warna oranye */
+                color: white;
+                padding: 5px;
+                border-radius: 6px;       /* Membuat tombol melengkung */
+            }
+            QPushButton:hover {
+                background-color: #FF4500; /* Warna saat hover */
+            }
+        """)
+        header_layout.addWidget(add_button)
+        card_layout.addLayout(header_layout)
+
+        # Progress Bar
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setRange(0, saving_target_amount)
+        self.progress_bar.setValue(saving_target_amount)
+        self.progress_bar.setTextVisible(False)
+        self.progress_bar.setStyleSheet("""
+            QProgressBar {
+                border: 1px solid black;
+                border-radius: 10px;
+                background-color: white;
+                height: 20px;
+            }
+            QProgressBar::chunk {
+                border-radius: 8px;
+                background-color: #7ED957;
+            }
+        """)
+        card_layout.addWidget(self.progress_bar)
+
+        # Footer Layout untuk tanggal
+        footer_layout = QHBoxLayout()
+        start_label = QLabel(saving_start_date)
+        start_label.setFont(QFont("Arial", 12))
+        start_label.setStyleSheet("""color: #A9A9A9;
+            background-color: transparent;
+            border: none;
+            padding: 0px 0px 2px 0px;
+            text-align: left;
+            """)
+        footer_layout.addWidget(start_label)
+
+        target_label = QLabel(saving_target_date)
+        target_label.setFont(QFont("Arial", 12))
+        target_label.setStyleSheet("""color: #A9A9A9;
+            background-color: transparent; 
+            border: none;
+            padding: 0px 0px 2px 0px;
+            text-align: right;
+            """)
+        footer_layout.addWidget(target_label)
+        footer_layout.setStretch(0,1)
+
+        card_layout.addLayout(footer_layout)
+
+        center_layout = QVBoxLayout()
+        button_layout = QHBoxLayout()
+        delete_button = QPushButton("Delete")
+        delete_button.setStyleSheet("""
+            QPushButton {
+                border: none;
+                background-color: #d12f19;  /* Warna oranye */
+                color: white;
+                padding: 5px;
+                border-radius: 8px;       /* Membuat tombol melengkung */
+            }
+            QPushButton:hover {
+                background-color: #5e150b; /* Warna saat hover */
+            }
+        """)
+
+        # border: 0.5px solid #58595c;
+        #     border-radius: 30px;
+        #     padding: 1px;
+        #     background-color: #FFFFFF;
+
+        delete_button.clicked.connect(lambda: self.delete_saving(saving_id))
+        edit_button = QPushButton("Edit")
+        edit_button.clicked.connect(lambda: self.edit_saving(saving_id))
+        edit_button.setStyleSheet("""
+            QPushButton {
+                border: none;
+                background-color: #f28211;  /* Warna oranye */
+                color: white;
+                padding: 5px;
+                border-radius: 8px;       /* Membuat tombol melengkung */
+            }
+            QPushButton:hover {
+                background-color: #804f1f; /* Warna saat hover */
+            }
+        """)
+        button_layout.addStretch(0)
+        button_layout.addWidget(delete_button, alignment=Qt.AlignmentFlag.AlignRight)
+        button_layout.addWidget(edit_button, alignment=Qt.AlignmentFlag.AlignRight)
+        button_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
+        center_layout.addLayout(button_layout)
+        center_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
+
+        card_layout.addLayout(center_layout)
+
+
+        self.updateProgressManually(saving_current_amount, saving_target_amount)
+        return card
+
+
+
+    def updateProgressManually(self, current_amount, target_amount):
+        """
+        Perbarui progress bar secara manual dengan current_amount dan target_amount baru.
+        """
+        self.current_amount = current_amount
+        self.target_amount = target_amount
+
+        # Perbarui nilai progress bar
+        self.progress_bar.setRange(0, self.target_amount)
+        self.progress_bar.setValue(self.current_amount)
+
+        # Perbarui teks target amount
+        self.amount_label.setText(f"{self.target_amount:,.0f}")
+
+        # Ubah warna progress bar berdasarkan persentase
+        percentage = (self.current_amount / self.target_amount) * 100 if self.target_amount else 0
+        if percentage > 80:
+            color = "#FF6347"  # Merah
+        elif percentage > 50:
+            color = "#FFD700"  # Emas
+        else:
+            color = "#7ED957"  # Hijau
+
+        self.progress_bar.setStyleSheet(f"""
+            QProgressBar {{
+                border: 1px solid black;
+                border-radius: 10px;
+                background-color: white;
+                height: 20px;
+            }}
+            QProgressBar::chunk {{
+                border-radius: 8px;
+                background-color: {color};
+            }}
+        """)
+        
+    
+    def delete_saving(self, id):
+        delete_saving(id)
+        self.load_savings()
+
+    def create_saving_form(self):
+        print("pppp")
+        from views.createSaving import SavingFormUI
+        self.create_form = SavingFormUI(self)
+        self.create_form.show()
+        self.create_form.closed.connect(self.load_savings)
+
+    def edit_saving(self, id):
+        from views.editUi_saving import EditSavingFormUI
+        self.edit_form = EditSavingFormUI(self, id)
+        self.edit_form.show()
+        self.edit_form.closed.connect(self.load_savings)
+    
+    def add_saving(self, id):
+        from views.update_saving import UpdateSavingFormUI
+        self.edit_form = UpdateSavingFormUI(self, id)
+        self.edit_form.show()
+        self.edit_form.closed.connect(self.load_savings)
